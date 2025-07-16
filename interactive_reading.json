@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ir-q1",
+    "type": "completeTheSentences",
+    "passage": "Transportation systems have been (1)__________ linked to natural resources, especially oil, for the past hundred (2)__________ . The oil (3)__________ has (4)__________ a major profit maker for many (5)__________ and countries.",
+    "blanks": [
+      {"id": "blank1", "options": ["sometimes", "the", "only", "not", "closely"], "correct": "closely"},
+      {"id": "blank2", "options": ["years", "minutes", "decade", "miles", "hours"], "correct": "years"},
+      {"id": "blank3", "options": ["place", "industry", "façade", "organizations", "companies"], "correct": "industry"},
+      {"id": "blank4", "options": ["introduced", "formed", "been", "created", "established"], "correct": "been"},
+      {"id": "blank5", "options": ["energies", "sources", "nations", "people", "corporations"], "correct": "corporations"}
+    ]
+  },
+  {
+    "id": "ir-q2",
+    "type": "completeThePassage",
+    "passage_section1": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries.",
+    "passage_section2": "Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "missing_sentence_options": [
+      "The spill contaminated fish, birds, and shellfish and unfinished marine life for generations to come.",
+      "However, there are significant environmental problems and potential security risks due to the widespread use of oil.",
+      "Environmental impact assessments (EIAs) are only intended to maximize benefits of development while minimizing possible ecological damage.",
+      "Ineffective energy policies and diminishing natural resources have led the country to begin tapping into their coal reserves."
+    ],
+    "correct_sentence": "However, there are significant environmental problems and potential security risks due to the widespread use of oil."
+  },
+  {
+    "id": "ir-q3",
+    "type": "highlightTheAnswer",
+    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "question": "What are some examples of alternatives to oil?",
+    "correct_answer_text": "renewable (solar, wind) and nonrenewable (nuclear) sources of energy"
+  },
+  {
+    "id": "ir-q4",
+    "type": "highlightTheAnswer",
+    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "question": "What will businesses begin to do as awareness of issues around oil grows?",
+    "correct_answer_text": "incorporate alternative energy sources into their supply chain management plans"
+  },
+  {
+    "id": "ir-q5",
+    "type": "identifyTheIdea",
+    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "ideas": [
+      "Current uses of alternative energy include solar power, biomass power, geothermal power, and hydropower as well as wind, and ocean currents.",
+      "In 1940, petroleum use decreased significantly to meet military needs for gasoline for aircraft and other types of mobility.",
+      "Fossil fuels are used to generate electricity, because mechanical devices are made to run off electricity instead of steam or water.",
+      "Oil has been a major source of profit for many corporations and countries, but there are environmental issues and security risks."
+    ],
+    "correct_idea": "Oil has been a major source of profit for many corporations and countries, but there are environmental issues and security risks."
+  },
+  {
+    "id": "ir-q6",
+    "type": "titleThePassage",
+    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "titles": [
+      "Alternative Energy Sources",
+      "Managing an Oil Spill",
+      "The Rise of the Oil Industry",
+      "Becoming a Firefighter: Skills and Responsibilities"
+    ],
+    "correct_title": "Alternative Energy Sources"
+  }
+]

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多邻国风格语言练习平台</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- 配置Tailwind自定义颜色和字体 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#58CC02',
+            secondary: '#3498db',
+            dark: '#2c3e50',
+            light: '#ecf0f1',
+            accent: '#f39c12',
+            danger: '#e74c3c',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .card-shadow {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .progress-animation {
+        transition: width 1s linear;
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+      }
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      .slide-up {
+        animation: slideUp 0.5s ease-out;
+      }
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+  <!-- 顶部导航栏 -->
+  <header class="bg-white shadow-md fixed top-0 w-full z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+        <h1 class="text-xl font-bold text-dark">多邻国练习</h1>
+      </div>
+      <nav class="hidden md:flex">
+        <a href="#" id="home-btn" class="text-gray-700 hover:text-primary transition-colors">首页</a>
+      </nav>
+      <button class="md:hidden text-gray-700 focus:outline-none" id="mobile-menu-btn">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- 主内容区 -->
+  <main class="container mx-auto px-4 pt-24 pb-16">
+    <section class="max-w-3xl mx-auto">
+      <!-- 进度条 -->
+      <div class="mb-8 fade-in">
+        <div class="flex justify-between items-center mb-2">
+          <h2 class="text-lg font-semibold text-dark">当前进度</h2>
+          <span class="text-sm text-gray-600" id="progress-text">0/0</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-primary h-2.5 rounded-full progress-bar" id="progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- 倒计时 -->
+      <div id="timer-container" class="mb-6 hidden fade-in">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm font-medium text-gray-600">剩余时间</h3>
+          <div class="flex items-center">
+            <i class="fa fa-clock-o text-accent mr-2"></i>
+            <span id="timer" class="text-lg font-semibold">30s</span>
+          </div>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+          <div id="time-progress" class="bg-accent h-2 rounded-full progress-animation" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- 练习卡片 -->
+      <div class="bg-white rounded-xl p-6 mb-8 card-shadow hover-scale transform transition-all duration-300">
+        <div id="exercise-container" class="space-y-6">
+          <!-- 初始状态：选择题型 -->
+          <div class="text-center py-12 fade-in" id="exercise-selector">
+            <h2 class="text-2xl font-bold text-dark mb-8">请选择练习类型</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button class="exercise-type-btn py-4 px-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors" data-type="filling" data-file="filling_the_blank.json">
+                <i class="fa fa-pencil text-2xl mb-2"></i>
+                <p>Fill in the Blanks</p>
+              </button>
+              <button class="exercise-type-btn py-4 px-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors" data-type="read" data-file="read_and_complete.json">
+                <i class="fa fa-book text-2xl mb-2"></i>
+                <p>Read and Complete</p>
+              </button>
+              <button class="exercise-type-btn py-4 px-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors" data-type="interactive" data-file="interactive_reading.json">
+                <i class="fa fa-exchange text-2xl mb-2"></i>
+                <p>Interactive Reading</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 结果提示（移至主界面下方） -->
+      <div id="result-toast" class="mb-8 hidden fade-in">
+        <div class="bg-white rounded-xl p-6 shadow-lg transform transition-all duration-300 scale-95 opacity-0" id="toast-content">
+          <div class="flex items-start">
+            <div id="toast-icon" class="mr-4 mt-1 w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"></div>
+            <div class="flex-1">
+              <h3 id="toast-title" class="font-bold text-xl"></h3>
+              <p id="toast-message" class="text-gray-600 mt-2"></p>
+              
+              <!-- 显示正确答案 -->
+              <div id="correct-answers-container" class="mt-4 hidden">
+                <h4 class="font-medium text-gray-800 mb-2">正确答案:</h4>
+                <div id="correct-answers" class="text-gray-700 space-y-3"></div>
+              </div>
+              
+              <!-- 显示正确率 -->
+              <div id="accuracy-container" class="mt-4 hidden">
+                <div class="flex items-center">
+                  <span class="text-gray-600 mr-2">正确率:</span>
+                  <span id="toast-accuracy" class="font-bold text-primary text-xl"></span>
+                </div>
+              </div>
+              
+              <div class="flex justify-end mt-4">
+                <button id="close-toast" class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+                  关闭
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 按钮组 -->
+      <div class="flex justify-between space-x-4">
+        <button id="prev-btn" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-1 hover-scale" disabled>
+          <i class="fa fa-arrow-left mr-2"></i> 上一题
+        </button>
+        <button id="next-btn" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors hover-scale flex-1" disabled>
+          下一题 <i class="fa fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- 移动端导航菜单 -->
+  <div id="mobile-menu" class="fixed inset-0 bg-dark/95 z-50 hidden flex-col items-center justify-center">
+    <button id="close-menu" class="absolute top-6 right-6 text-white text-2xl">
+      <i class="fa fa-times"></i>
+    </button>
+    <nav class="flex flex-col items-center space-y-8">
+      <a href="#" id="mobile-home-btn" class="text-white text-2xl hover:text-primary transition-colors">首页</a>
+    </nav>
+  </div>
+
+  <script>
+    // 当前题目索引
+    let currentExerciseIndex = 0;
+    // 存储从JSON加载的所有题目
+    let exercises = [];
+    // 当前练习类型对应的JSON文件
+    let currentJsonFile = '';
+    // 存储用户答案
+    let userAnswers = [];
+    // 倒计时相关变量
+    let timer = null;
+    let timeRemaining = 0;
+    let totalTimePerQuestion = 30; // 默认每题30秒
+    
+    // DOM元素
+    const exerciseContainer = document.getElementById('exercise-container');
+    const exerciseSelector = document.getElementById('exercise-selector');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const resultToast = document.getElementById('result-toast');
+    const toastContent = document.getElementById('toast-content');
+    const toastIcon = document.getElementById('toast-icon');
+    const toastTitle = document.getElementById('toast-title');
+    const toastMessage = document.getElementById('toast-message');
+    const closeToast = document.getElementById('close-toast');
+    const timerContainer = document.getElementById('timer-container');
+    const timerDisplay = document.getElementById('timer');
+    const timeProgress = document.getElementById('time-progress');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
+    const exerciseTypeBtns = document.querySelectorAll('.exercise-type-btn');
+    const homeBtn = document.getElementById('home-btn');
+    const mobileHomeBtn = document.getElementById('mobile-home-btn');
+    const correctAnswersContainer = document.getElementById('correct-answers-container');
+    const correctAnswersElement = document.getElementById('correct-answers');
+    const accuracyContainer = document.getElementById('accuracy-container');
+    const toastAccuracy = document.getElementById('toast-accuracy');
+    
+    // 首页按钮点击事件
+    homeBtn.addEventListener('click', goHome);
+    mobileHomeBtn.addEventListener('click', () => {
+      goHome();
+      closeMenu.click();
+    });
+    
+    // 返回首页
+    function goHome() {
+      // 重置练习状态
+      currentExerciseIndex = 0;
+      exercises = [];
+      userAnswers = [];
+      currentJsonFile = '';
+      
+      // 隐藏倒计时
+      timerContainer.classList.add('hidden');
+      
+      // 重置进度条
+      progressBar.style.width = '0%';
+      progressText.textContent = '0/0';
+      
+      // 重置按钮状态
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      
+      // 隐藏结果提示
+      hideResultToast();
+      
+      // 清空练习容器
+      exerciseContainer.innerHTML = '';
+      
+      // 重新添加练习选择器
+      exerciseContainer.appendChild(exerciseSelector);
+      
+      // 显示练习选择器
+      exerciseSelector.style.display = 'block';
+      
+      // 停止任何活动的计时器
+      stopTimer();
+    }
+    
+    // 移动端菜单交互
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      document.body.style.overflow = '';
+    });
+
+    // 练习类型选择
+    exerciseTypeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const file = btn.getAttribute('data-file');
+        const type = btn.getAttribute('data-type');
+        // 根据题型设置不同的倒计时
+        if (type === 'filling') {
+          totalTimePerQuestion = 20; // 填空题20秒/题
+        } else if (type === 'read') {
+          totalTimePerQuestion = 180; // 阅读完成题180秒/题
+        } else {
+          totalTimePerQuestion = 300; // 互动阅读300秒/题
+        }
+        currentJsonFile = file;
+        loadExercises(file);
+        // 隐藏选择面板
+        exerciseSelector.style.display = 'none';
+        // 启用导航按钮
+        nextBtn.disabled = false;
+      });
+    });
+
+    // 从外部JSON文件加载题目
+    async function loadExercises(jsonFile) {
+      try {
+        // 显示加载状态
+        exerciseContainer.innerHTML = `
+          <div class="text-center py-12 fade-in">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+            <p class="text-gray-600">正在加载 ${jsonFile} 内容...</p>
+          </div>
+        `;
+
+        // 加载对应JSON文件（路径与index.html同级）
+        const response = await fetch(jsonFile);
+        if (!response.ok) {
+          throw new Error(`加载失败: ${response.status}`);
+        }
+        exercises = await response.json();
+        userAnswers = new Array(exercises.length).fill(null);
+        
+        // 更新进度显示
+        updateProgressDisplay();
+        
+        // 渲染第一题
+        if (exercises.length > 0) {
+          renderCurrentExercise();
+        } else {
+          throw new Error('该题型暂无练习数据');
+        }
+      } catch (error) {
+        console.error('加载练习失败:', error);
+        exerciseContainer.innerHTML = `
+          <div class="text-center py-12 fade-in">
+            <i class="fa fa-exclamation-triangle text-accent text-4xl mb-4"></i>
+            <h3 class="text-xl font-bold text-dark mb-2">加载练习失败</h3>
+            <p class="text-gray-600">请检查文件 ${jsonFile} 是否存在</p>
+            <p class="text-gray-500 mt-2">错误: ${error.message}</p>
+            <button id="retry-btn" class="mt-4 px-6 py-2 bg-primary text-white rounded-lg">
+              重试
+            </button>
+          </div>
+        `;
+        // 重试按钮
+        document.getElementById('retry-btn').addEventListener('click', () => {
+          loadExercises(currentJsonFile);
+        });
+      }
+    }
+
+    // 更新进度显示
+    function updateProgressDisplay() {
+      if (exercises.length > 0) {
+        progressText.textContent = `${currentExerciseIndex + 1}/${exercises.length}`;
+        progressBar.style.width = `${((currentExerciseIndex + 1) / exercises.length) * 100}%`;
+      }
+    }
+
+    // 渲染当前题目
+    function renderCurrentExercise() {
+      if (exercises.length === 0) return;
+      
+      // 停止之前的倒计时
+      stopTimer();
+      
+      const exercise = exercises[currentExerciseIndex];
+      
+      // 清空容器
+      exerciseContainer.innerHTML = '';
+      
+      // 创建标题元素
+      const titleElement = document.createElement('h2');
+      titleElement.className = 'text-2xl font-bold text-dark mb-4 text-shadow fade-in';
+      titleElement.textContent = exercise.title || `练习 ${currentExerciseIndex + 1}`;
+      exerciseContainer.appendChild(titleElement);
+      
+      // 创建题目文本元素
+      const textElement = document.createElement('div');
+      textElement.className = 'text-lg leading-relaxed mb-6 text-gray-800 slide-up';
+      
+      // 处理题目文本中的空格和答案占位符
+      let formattedText = '';
+      if (exercise.text) {
+        // 通用填空处理
+        const words = exercise.text.split(' ');
+        formattedText = words.map(word => {
+          if (word.includes('[BLANK]')) {
+            const blankCount = (word.match(/\[BLANK\]/g) || []).length;
+            const blanks = [];
+            for (let i = 0; i < blankCount; i++) {
+              blanks.push(`<input type="text" maxlength="1" class="blank-input border-b-2 border-gray-300 focus:border-primary focus:outline-none w-8 mx-1 text-center font-medium" data-index="${i}">`);
+            }
+            return word.replace(/\[BLANK\]/g, () => blanks.shift());
+          }
+          return word;
+        }).join(' ');
+      } else if (exercise.passage) {
+        // 互动阅读题型处理
+        formattedText = exercise.passage;
+        // 替换括号中的空白标记（如(1)__________）
+        formattedText = formattedText.replace(/\(\d+\)__________/g, (match, index) => {
+          const blankIndex = parseInt(match.match(/\d+/)[0]) - 1;
+          if (exercise.blanks && exercise.blanks[blankIndex]) {
+            // 创建下拉选择框
+            const options = exercise.blanks[blankIndex].options.map(option => 
+              `<option value="${option}">${option}</option>`
+            ).join('');
+            return `<select class="blank-select border-b-2 border-gray-300 focus:border-primary px-2 py-1 mx-1">
+                      <option value="">选择答案</option>
+                      ${options}
+                    </select>`;
+          }
+          return match;
+        });
+      }
+      
+      textElement.innerHTML = formattedText;
+      exerciseContainer.appendChild(textElement);
+      
+      // 创建提交按钮
+      const submitBtn = document.createElement('button');
+      submitBtn.id = 'submit-btn';
+      submitBtn.className = 'mt-6 px-8 py-3 bg-secondary text-white rounded-lg hover:bg-secondary/90 transition-colors transform hover:scale-105 active:scale-95 slide-up';
+      submitBtn.style.animationDelay = '0.2s';
+      submitBtn.textContent = '检查答案';
+      submitBtn.addEventListener('click', checkAnswer);
+      exerciseContainer.appendChild(submitBtn);
+      
+      // 恢复用户之前的答案
+      if (userAnswers[currentExerciseIndex]) {
+        const inputs = document.querySelectorAll('.blank-input, .blank-select');
+        inputs.forEach((input, index) => {
+          if (userAnswers[currentExerciseIndex][index]) {
+            input.value = userAnswers[currentExerciseIndex][index];
+          }
+        });
+      }
+      
+      // 更新按钮状态
+      prevBtn.disabled = currentExerciseIndex === 0;
+      nextBtn.textContent = currentExerciseIndex === exercises.length - 1 ? '完成' : '下一题';
+      
+      // 更新进度显示
+      updateProgressDisplay();
+      
+      // 开始新的倒计时
+      startTimer();
+      
+      // 自动聚焦第一个输入框
+      const firstInput = document.querySelector('.blank-input, .blank-select');
+      if (firstInput) firstInput.focus();
+      
+      // 设置输入框的自动跳转
+      setupInputNavigation();
+    }
+
+    // 设置输入框的自动跳转
+    function setupInputNavigation() {
+      const inputs = document.querySelectorAll('.blank-input');
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+          // 输入一个字符后自动跳转到下一个空
+          if (e.target.value.length === 1) {
+            const nextInput = inputs[index + 1];
+            if (nextInput) nextInput.focus();
+          }
+        });
+        
+        input.addEventListener('keydown', (e) => {
+          // 处理退格键
+          if (e.key === 'Backspace' && e.target.value === '') {
+            const prevInput = inputs[index - 1];
+            if (prevInput) prevInput.focus();
+          }
+        });
+      });
+    }
+
+    // 开始倒计时
+    function startTimer() {
+      timerContainer.classList.remove('hidden');
+      timeRemaining = totalTimePerQuestion;
+      updateTimerDisplay();
+      
+      timer = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        
+        if (timeRemaining <= 0) {
+          clearInterval(timer);
+          checkAnswer();
+        }
+      }, 1000);
+    }
+
+    // 停止倒计时
+    function stopTimer() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      // 保留倒计时显示但停止动画
+      timeProgress.style.transition = 'none';
+    }
+
+    // 更新倒计时显示
+    function updateTimerDisplay() {
+      timerDisplay.textContent = `${Math.floor(timeRemaining / 60)}:${String(timeRemaining % 60).padStart(2, '0')}`;
+      timeProgress.style.width = `${(timeRemaining / totalTimePerQuestion) * 100}%`;
+      
+      // 当剩余时间少于10秒时，改变颜色
+      if (timeRemaining <= 10) {
+        timeProgress.classList.remove('bg-accent');
+        timeProgress.classList.add('bg-danger');
+        timerDisplay.classList.add('text-danger');
+        timerDisplay.classList.add('pulse');
+      } else {
+        timeProgress.classList.remove('bg-danger');
+        timeProgress.classList.add('bg-accent');
+        timerDisplay.classList.remove('text-danger');
+        timerDisplay.classList.remove('pulse');
+      }
+    }
+
+    // 检查答案
+    function checkAnswer() {
+      const inputs = document.querySelectorAll('.blank-input, .blank-select');
+      const userInput = Array.from(inputs).map(input => input.value.toLowerCase());
+      let correctAnswers = [];
+      
+      // 根据题型获取正确答案
+      const currentExercise = exercises[currentExerciseIndex];
+      if (currentExercise.answers) {
+        correctAnswers = currentExercise.answers.map(a => a.toLowerCase());
+      } else if (currentExercise.blanks) {
+        correctAnswers = currentExercise.blanks.map(b => b.correct.toLowerCase());
+      }
+      
+      // 保存用户答案
+      userAnswers[currentExerciseIndex] = userInput;
+      
+      // 检查答案是否正确
+      let isCorrect = true;
+      inputs.forEach((input, index) => {
+        const isInputCorrect = userInput[index] === correctAnswers[index];
+        input.classList.toggle('border-green-500', isInputCorrect);
+        input.classList.toggle('border-red-500', !isInputCorrect);
+        
+        // 如果不正确，显示正确答案
+        if (!isInputCorrect) {
+          isCorrect = false;
+          input.value = correctAnswers[index];
+        }
+      });
+      
+      // 停止倒计时
+      stopTimer();
+      
+      // 禁用提交按钮
+      const submitBtn = document.getElementById('submit-btn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-50');
+        submitBtn.classList.remove('hover:bg-secondary/90');
+        submitBtn.classList.remove('hover:scale-105');
+      }
+      
+      // 显示结果提示
+      showResultToast(isCorrect, userInput, correctAnswers);
+    }
+
+    // 显示结果提示
+    function showResultToast(isCorrect, userAnswers, correctAnswers) {
+      resultToast.classList.remove('hidden');
+      setTimeout(() => {
+        toastContent.classList.remove('scale-95', 'opacity-0');
+        toastContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+      
+      if (isCorrect) {
+        toastIcon.className = 'mr-4 mt-1 w-10 h-10 flex items-center justify-center rounded-full bg-green-100 text-green-500 flex-shrink-0';
+        toastIcon.innerHTML = '<i class="fa fa-check text-xl"></i>';
+        toastTitle.textContent = '正确!';
+        toastTitle.className = 'font-bold text-xl text-green-600';
+        toastMessage.textContent = '太棒了！你答对了所有问题。';
+      } else {
+        toastIcon.className = 'mr-4 mt-1 w-10 h-10 flex items-center justify-center rounded-full bg-red-100 text-red-500 flex-shrink-0';
+        toastIcon.innerHTML = '<i class="fa fa-times text-xl"></i>';
+        toastTitle.textContent = '需要改进';
+        toastTitle.className = 'font-bold text-xl text-red-600';
+        toastMessage.textContent = '继续练习，你会做得更好！';
+      }
+      
+      // 显示正确答案
+      correctAnswersContainer.classList.remove('hidden');
+      correctAnswersElement.innerHTML = '';
+      
+      // 生成正确的完整句子
+      let correctSentence = '';
+      if (exercises[currentExerciseIndex].text) {
+        // 填空题类型
+        const words = exercises[currentExerciseIndex].text.split(' ');
+        let answerIndex = 0;
+        
+        correctSentence = words.map(word => {
+          if (word.includes('[BLANK]')) {
+            const blankCount = (word.match(/\[BLANK\]/g) || []).length;
+            const blanks = [];
+            for (let i = 0; i < blankCount; i++) {
+              const isCorrect = userAnswers[answerIndex] === correctAnswers[answerIndex];
+              const answerText = correctAnswers[answerIndex];
+              blanks.push(`<span class="font-medium ${isCorrect ? 'text-green-600' : 'text-red-600'}">${answerText}</span>`);
+              answerIndex++;
+            }
+            return word.replace(/\[BLANK\]/g, () => blanks.shift());
+          }
+          return word;
+        }).join(' ');
+      } else if (exercises[currentExerciseIndex].passage) {
+        // 互动阅读类型
+        correctSentence = exercises[currentExerciseIndex].passage;
+        
+        // 替换括号中的空白标记（如(1)__________）
+        let blankIndex = 0;
+        correctSentence = correctSentence.replace(/\(\d+\)__________/g, (match) => {
+          const isCorrect = userAnswers[blankIndex] === correctAnswers[blankIndex];
+          const answerText = correctAnswers[blankIndex];
+          blankIndex++;
+          return `<span class="font-medium ${isCorrect ? 'text-green-600' : 'text-red-600'}">${answerText}</span>`;
+        });
+      }
+      
+      // 创建正确句子元素
+      const sentenceElement = document.createElement('div');
+      sentenceElement.className = 'p-4 bg-gray-50 rounded-lg border border-gray-200';
+      sentenceElement.innerHTML = correctSentence;
+      correctAnswersElement.appendChild(sentenceElement);
+      
+      // 计算并显示正确率
+      accuracyContainer.classList.remove('hidden');
+      
+      const correctCount = userAnswers.reduce((count, answer, index) => {
+        return answer === correctAnswers[index] ? count + 1 : count;
+      }, 0);
+      
+      const accuracy = Math.round((correctCount / correctAnswers.length) * 100);
+      toastAccuracy.textContent = `${accuracy}%`;
+    }
+
+    // 隐藏结果提示
+    function hideResultToast() {
+      toastContent.classList.remove('scale-100', 'opacity-100');
+      toastContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        resultToast.classList.add('hidden');
+      }, 300);
+    }
+
+    // 关闭结果提示
+    closeToast.addEventListener('click', hideResultToast);
+
+    // 上一题按钮点击事件
+    prevBtn.addEventListener('click', () => {
+      if (currentExerciseIndex > 0) {
+        hideResultToast();
+        currentExerciseIndex--;
+        renderCurrentExercise();
+      }
+    });
+
+    // 下一题按钮点击事件
+    nextBtn.addEventListener('click', () => {
+      if (currentExerciseIndex < exercises.length - 1) {
+        hideResultToast();
+        currentExerciseIndex++;
+        renderCurrentExercise();
+      } else {
+        // 完成所有题目
+        showCompletionToast();
+      }
+    });
+
+    // 显示底部完成提示
+    function showCompletionToast() {
+      // 计算正确率
+      const correctCount = userAnswers.reduce((count, answers, index) => {
+        const currentExercise = exercises[index];
+        let correctAnswers = [];
+        if (currentExercise.answers) {
+          correctAnswers = currentExercise.answers.map(a => a.toLowerCase());
+        } else if (currentExercise.blanks) {
+          correctAnswers = currentExercise.blanks.map(b => b.correct.toLowerCase());
+        }
+        if (answers && answers.every((answer, i) => answer === correctAnswers[i])) {
+          return count + 1;
+        }
+        return count;
+      }, 0);
+      
+      const accuracy = Math.round((correctCount / exercises.length) * 100);
+      toastAccuracy.textContent = `${accuracy}%`;
+      
+      resultToast.classList.remove('hidden');
+      
+      // 修改提示内容为完成信息
+      toastIcon.className = 'mr-4 mt-1 w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0';
+      toastIcon.innerHTML = '<i class="fa fa-trophy text-xl"></i>';
+      toastTitle.textContent = '恭喜完成!';
+      toastTitle.className = 'font-bold text-xl text-primary';
+      toastMessage.textContent = '你已完成所有练习';
+      
+      // 隐藏正确答案，只显示正确率
+      correctAnswersContainer.classList.add('hidden');
+      accuracyContainer.classList.remove('hidden');
+      
+      // 修改按钮文本
+      closeToast.textContent = '返回首页';
+      closeToast.removeEventListener('click', hideResultToast);
+      closeToast.addEventListener('click', goHome);
+      
+      // 显示提示
+      toastContent.classList.remove('scale-95', 'opacity-0');
+      toastContent.classList.add('scale-100', 'opacity-100');
+    }
+
+    // 监听键盘事件
+    document.addEventListener('keydown', (event) => {
+      // 如果按下的是回车键
+      if (event.key === 'Enter') {
+        const submitBtn = document.getElementById('submit-btn');
+        const isToastVisible = !resultToast.classList.contains('hidden');
+        
+        // 如果结果提示可见，关闭提示
+        if (isToastVisible) {
+          hideResultToast();
+          return;
+        }
+        
+        // 如果提交按钮存在且未禁用，点击提交按钮
+        if (submitBtn && !submitBtn.disabled) {
+          submitBtn.click();
+        }
+      }
+    });
+    
+    // 滚动时导航栏效果
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('py-2');
+        header.classList.remove('py-3');
+      } else {
+        header.classList.add('py-3');
+        header.classList.remove('py-2');
+      }
+    });
+  </script>
+</body>
+</html>
