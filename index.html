@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>多邻国阅读练习平台·锋锋老师</title>
+  <title>多邻国练习平台·锋锋老师</title>
   <!-- Tailwind CSS v3 -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
@@ -77,8 +77,34 @@
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans">
+  <!-- 登录界面 -->
+  <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-white">
+    <div class="max-w-md w-full px-6 py-8 bg-white rounded-xl shadow-xl transform transition-all duration-500">
+      <div class="text-center mb-6">
+        <i class="fa fa-lock text-primary text-5xl mb-4"></i>
+        <h2 class="text-2xl font-bold text-dark">输入测验码</h2>
+        <p class="text-gray-500 mt-2">请输入正确的测验码以继续</p>
+      </div>
+      
+      <div class="space-y-4">
+        <div>
+          <label for="quiz-code" class="block text-sm font-medium text-gray-700 mb-1">测验码</label>
+          <input type="text" id="quiz-code" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入测验码">
+        </div>
+        
+        <button id="login-btn" class="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors transform hover:scale-[1.02] active:scale-[0.98]">
+          进入练习
+        </button>
+      </div>
+      
+      <div class="mt-6 text-center">
+        <p class="text-gray-500 text-sm"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- 顶部导航栏 -->
-  <header class="bg-white shadow-md fixed top-0 w-full z-50 transition-all duration-300">
+  <header class="bg-white shadow-md fixed top-0 w-full z-40 transition-all duration-300">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center space-x-2">
         <i class="fa fa-graduation-cap text-primary text-2xl"></i>
@@ -201,6 +227,104 @@
   </div>
 
   <script>
+// 音频元素（支持多种格式）
+const letterSound = new Audio();
+letterSound.src = 'sounds/typing_sound.mp3';
+letterSound.src = 'sounds/typing_sound.ogg'; // 备用格式
+
+const correctSound = new Audio();
+correctSound.src = 'sounds/correct_answer.mp3';
+correctSound.src = 'sounds/correct_answer.ogg'; // 备用格式
+
+const wrongSound = new Audio();
+wrongSound.src = 'sounds/wrong_answer.mp3';
+wrongSound.src = 'sounds/wrong_answer.ogg'; // 备用格式
+
+// 音频加载状态
+let soundsLoaded = false;
+
+// 加载所有音频并检查状态
+function loadSounds() {
+  let loadedCount = 0;
+  const totalSounds = 3;
+  
+  function checkLoaded() {
+    loadedCount++;
+    if (loadedCount === totalSounds) {
+      soundsLoaded = true;
+      console.log('所有音频已成功加载');
+    }
+  }
+  
+  // 检查每个音频的加载状态
+  letterSound.addEventListener('canplaythrough', checkLoaded);
+  correctSound.addEventListener('canplaythrough', checkLoaded);
+  wrongSound.addEventListener('canplaythrough', checkLoaded);
+  
+  // 设置错误处理
+  letterSound.addEventListener('error', (e) => console.error('字母输入音效加载失败:', e));
+  correctSound.addEventListener('error', (e) => console.error('正确答案音效加载失败:', e));
+  wrongSound.addEventListener('error', (e) => console.error('错误答案音效加载失败:', e));
+  
+  // 开始加载
+  letterSound.load();
+  correctSound.load();
+  wrongSound.load();
+}
+
+// 在用户首次交互后初始化音频上下文
+function initializeAudioContext() {
+  // 创建一个简单的音频上下文来解锁自动播放
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  
+  // 只需要创建一次，在用户首次点击后
+  document.addEventListener('click', function enableAudio() {
+    if (audioContext.state === 'suspended') {
+      audioContext.resume().then(() => {
+        console.log('音频上下文已恢复');
+      });
+    }
+    // 只需要执行一次
+    document.removeEventListener('click', enableAudio);
+  }, { once: true });
+}
+
+// 设置音频音量
+letterSound.volume = 0.5;
+correctSound.volume = 0.7;
+wrongSound.volume = 0.7;
+
+// 页面加载后初始化
+document.addEventListener('DOMContentLoaded', () => {
+  loadSounds();
+  initializeAudioContext();
+});
+
+// 播放字母输入音
+function playLetterSound() {
+  if (!soundsLoaded) return;
+  
+  // 重置音频以允许连续播放
+  letterSound.currentTime = 0;
+  letterSound.play().catch(e => console.log('无法播放字母输入音效:', e));
+}
+
+// 播放正确答案音
+function playCorrectSound() {
+  if (!soundsLoaded) return;
+  
+  correctSound.currentTime = 0;
+  correctSound.play().catch(e => console.log('无法播放正确答案音效:', e));
+}
+
+// 播放错误答案音
+function playWrongSound() {
+  if (!soundsLoaded) return;
+  
+  wrongSound.currentTime = 0;
+  wrongSound.play().catch(e => console.log('无法播放错误答案音效:', e));
+}
+    
     // 当前题目索引
     let currentExerciseIndex = 0;
     // 存储从JSON加载的所有题目
@@ -240,6 +364,54 @@
     const correctAnswersElement = document.getElementById('correct-answers');
     const accuracyContainer = document.getElementById('accuracy-container');
     const toastAccuracy = document.getElementById('toast-accuracy');
+    const loginScreen = document.getElementById('login-screen');
+    const quizCodeInput = document.getElementById('quiz-code');
+    const loginBtn = document.getElementById('login-btn');
+    
+    // 播放字母输入音
+    function playLetterSound() {
+      // 重置音频以允许连续播放
+      letterSound.currentTime = 0;
+      letterSound.play().catch(e => console.log('无法播放音频:', e));
+    }
+    
+    // 播放正确答案音
+    function playCorrectSound() {
+      correctSound.currentTime = 0;
+      correctSound.play().catch(e => console.log('无法播放音频:', e));
+    }
+    
+    // 播放错误答案音
+    function playWrongSound() {
+      wrongSound.currentTime = 0;
+      wrongSound.play().catch(e => console.log('无法播放音频:', e));
+    }
+    
+    // 测验码验证
+    loginBtn.addEventListener('click', () => {
+      const code = quizCodeInput.value.trim();
+      if (code === '1314') {
+        // 正确的测验码
+        loginScreen.classList.add('opacity-0');
+        setTimeout(() => {
+          loginScreen.classList.add('hidden');
+        }, 500);
+      } else {
+        // 错误的测验码
+        quizCodeInput.classList.add('border-danger');
+        quizCodeInput.classList.add('animate-shake');
+        setTimeout(() => {
+          quizCodeInput.classList.remove('animate-shake');
+        }, 500);
+      }
+    });
+    
+    // 按Enter键提交测验码
+    quizCodeInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        loginBtn.click();
+      }
+    });
     
     // 首页按钮点击事件
     homeBtn.addEventListener('click', goHome);
@@ -470,6 +642,12 @@
       
       // 设置输入框的自动跳转
       setupInputNavigation();
+      
+      // 添加字母输入音
+      const inputElements = document.querySelectorAll('.blank-input');
+      inputElements.forEach(input => {
+        input.addEventListener('input', playLetterSound);
+      });
     }
 
     // 设置输入框的自动跳转
@@ -570,6 +748,13 @@
           input.value = correctAnswers[index];
         }
       });
+      
+      // 播放结果音效
+      if (isCorrect) {
+        playCorrectSound();
+      } else {
+        playWrongSound();
+      }
       
       // 停止倒计时
       stopTimer();
@@ -739,6 +924,9 @@
       // 显示提示
       toastContent.classList.remove('scale-95', 'opacity-0');
       toastContent.classList.add('scale-100', 'opacity-100');
+      
+      // 播放完成音效
+      playCorrectSound();
     }
 
     // 监听键盘事件
