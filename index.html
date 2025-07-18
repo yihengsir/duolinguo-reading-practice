@@ -73,6 +73,21 @@
         50% { transform: scale(1.05); }
         100% { transform: scale(1); }
       }
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+      }
+      .animate-shake {
+        animation: shake 0.6s ease-in-out;
+      }
+      .blink {
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
     }
   </style>
 </head>
@@ -98,7 +113,7 @@
       </div>
       
       <div class="mt-6 text-center">
-        <p class="text-gray-500 text-sm"></p>
+        <p class="text-gray-500 text-sm">提示：使用测验码 <span class="font-mono bg-gray-100 px-2 py-1 rounded">1314</span> 开始练习</p>
       </div>
     </div>
   </div>
@@ -130,6 +145,20 @@
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2.5">
           <div class="bg-primary h-2.5 rounded-full progress-bar" id="progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- 能力值显示 -->
+      <div class="mb-6 fade-in" id="ability-container">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm font-medium text-gray-600">能力值</h3>
+          <div class="flex items-center">
+            <i class="fa fa-chart-line text-accent mr-2"></i>
+            <span id="ability-score" class="text-lg font-semibold">50 (中级)</span>
+          </div>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+          <div id="ability-progress" class="bg-accent h-2 rounded-full" style="width: 50%"></div>
         </div>
       </div>
 
@@ -227,103 +256,8 @@
   </div>
 
   <script>
-// 音频元素（支持多种格式）
-const letterSound = new Audio();
-letterSound.src = 'sounds/typing_sound.mp3';
-letterSound.src = 'sounds/typing_sound.ogg'; // 备用格式
-
-const correctSound = new Audio();
-correctSound.src = 'sounds/correct_answer.mp3';
-correctSound.src = 'sounds/correct_answer.ogg'; // 备用格式
-
-const wrongSound = new Audio();
-wrongSound.src = 'sounds/wrong_answer.mp3';
-wrongSound.src = 'sounds/wrong_answer.ogg'; // 备用格式
-
-// 音频加载状态
-let soundsLoaded = false;
-
-// 加载所有音频并检查状态
-function loadSounds() {
-  let loadedCount = 0;
-  const totalSounds = 3;
-  
-  function checkLoaded() {
-    loadedCount++;
-    if (loadedCount === totalSounds) {
-      soundsLoaded = true;
-      console.log('所有音频已成功加载');
-    }
-  }
-  
-  // 检查每个音频的加载状态
-  letterSound.addEventListener('canplaythrough', checkLoaded);
-  correctSound.addEventListener('canplaythrough', checkLoaded);
-  wrongSound.addEventListener('canplaythrough', checkLoaded);
-  
-  // 设置错误处理
-  letterSound.addEventListener('error', (e) => console.error('字母输入音效加载失败:', e));
-  correctSound.addEventListener('error', (e) => console.error('正确答案音效加载失败:', e));
-  wrongSound.addEventListener('error', (e) => console.error('错误答案音效加载失败:', e));
-  
-  // 开始加载
-  letterSound.load();
-  correctSound.load();
-  wrongSound.load();
-}
-
-// 在用户首次交互后初始化音频上下文
-function initializeAudioContext() {
-  // 创建一个简单的音频上下文来解锁自动播放
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  
-  // 只需要创建一次，在用户首次点击后
-  document.addEventListener('click', function enableAudio() {
-    if (audioContext.state === 'suspended') {
-      audioContext.resume().then(() => {
-        console.log('音频上下文已恢复');
-      });
-    }
-    // 只需要执行一次
-    document.removeEventListener('click', enableAudio);
-  }, { once: true });
-}
-
-// 设置音频音量
-letterSound.volume = 0.5;
-correctSound.volume = 0.7;
-wrongSound.volume = 0.7;
-
-// 页面加载后初始化
-document.addEventListener('DOMContentLoaded', () => {
-  loadSounds();
-  initializeAudioContext();
-});
-
-// 播放字母输入音
-function playLetterSound() {
-  if (!soundsLoaded) return;
-  
-  // 重置音频以允许连续播放
-  letterSound.currentTime = 0;
-  letterSound.play().catch(e => console.log('无法播放字母输入音效:', e));
-}
-
-// 播放正确答案音
-function playCorrectSound() {
-  if (!soundsLoaded) return;
-  
-  correctSound.currentTime = 0;
-  correctSound.play().catch(e => console.log('无法播放正确答案音效:', e));
-}
-
-// 播放错误答案音
-function playWrongSound() {
-  if (!soundsLoaded) return;
-  
-  wrongSound.currentTime = 0;
-  wrongSound.play().catch(e => console.log('无法播放错误答案音效:', e));
-}
+    // 全局记录已做题目（使用localStorage持久化存储）
+    let answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions')) || {};
     
     // 当前题目索引
     let currentExerciseIndex = 0;
@@ -337,6 +271,8 @@ function playWrongSound() {
     let timer = null;
     let timeRemaining = 0;
     let totalTimePerQuestion = 30; // 默认每题30秒
+    // 自适应学习系统实例
+    let adaptiveSystem = null;
     
     // DOM元素
     const exerciseContainer = document.getElementById('exercise-container');
@@ -367,24 +303,198 @@ function playWrongSound() {
     const loginScreen = document.getElementById('login-screen');
     const quizCodeInput = document.getElementById('quiz-code');
     const loginBtn = document.getElementById('login-btn');
+    const abilityContainer = document.getElementById('ability-container');
+    const abilityScore = document.getElementById('ability-score');
+    const abilityProgress = document.getElementById('ability-progress');
     
+    // 音频元素（支持多种格式）
+    const letterSound = new Audio();
+    letterSound.src = 'sounds/typing_sound.mp3';
+    letterSound.src = 'sounds/typing_sound.ogg'; // 备用格式
+
+    const correctSound = new Audio();
+    correctSound.src = 'sounds/correct_answer.mp3';
+    correctSound.src = 'sounds/correct_answer.ogg'; // 备用格式
+
+    const wrongSound = new Audio();
+    wrongSound.src = 'sounds/wrong_answer.mp3';
+    wrongSound.src = 'sounds/wrong_answer.ogg'; // 备用格式
+
+    // 音频加载状态
+    let soundsLoaded = false;
+
+    // 加载所有音频并检查状态
+    function loadSounds() {
+      let loadedCount = 0;
+      const totalSounds = 3;
+      
+      function checkLoaded() {
+        loadedCount++;
+        if (loadedCount === totalSounds) {
+          soundsLoaded = true;
+          console.log('所有音频已成功加载');
+        }
+      }
+      
+      // 检查每个音频的加载状态
+      letterSound.addEventListener('canplaythrough', checkLoaded);
+      correctSound.addEventListener('canplaythrough', checkLoaded);
+      wrongSound.addEventListener('canplaythrough', checkLoaded);
+      
+      // 设置错误处理
+      letterSound.addEventListener('error', (e) => console.error('字母输入音效加载失败:', e));
+      correctSound.addEventListener('error', (e) => console.error('正确答案音效加载失败:', e));
+      wrongSound.addEventListener('error', (e) => console.error('错误答案音效加载失败:', e));
+      
+      // 开始加载
+      letterSound.load();
+      correctSound.load();
+      wrongSound.load();
+    }
+
+    // 在用户首次交互后初始化音频上下文
+    function initializeAudioContext() {
+      // 创建一个简单的音频上下文来解锁自动播放
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // 只需要创建一次，在用户首次点击后
+      document.addEventListener('click', function enableAudio() {
+        if (audioContext.state === 'suspended') {
+          audioContext.resume().then(() => {
+            console.log('音频上下文已恢复');
+          });
+        }
+        // 只需要执行一次
+        document.removeEventListener('click', enableAudio);
+      }, { once: true });
+    }
+
+    // 设置音频音量
+    letterSound.volume = 0.5;
+    correctSound.volume = 0.7;
+    wrongSound.volume = 0.7;
+
+    // 页面加载后初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSounds();
+      initializeAudioContext();
+    });
+
     // 播放字母输入音
     function playLetterSound() {
+      if (!soundsLoaded) return;
+      
       // 重置音频以允许连续播放
       letterSound.currentTime = 0;
-      letterSound.play().catch(e => console.log('无法播放音频:', e));
+      letterSound.play().catch(e => console.log('无法播放字母输入音效:', e));
     }
-    
+
     // 播放正确答案音
     function playCorrectSound() {
+      if (!soundsLoaded) return;
+      
       correctSound.currentTime = 0;
-      correctSound.play().catch(e => console.log('无法播放音频:', e));
+      correctSound.play().catch(e => console.log('无法播放正确答案音效:', e));
     }
-    
+
     // 播放错误答案音
     function playWrongSound() {
+      if (!soundsLoaded) return;
+      
       wrongSound.currentTime = 0;
-      wrongSound.play().catch(e => console.log('无法播放音频:', e));
+      wrongSound.play().catch(e => console.log('无法播放错误答案音效:', e));
+    }
+
+    // ===================== 自适应学习系统 =====================
+    class AdaptiveLearningSystem {
+      constructor() {
+        this.ability = 50;  // 初始能力值 (0-100)
+        this.questionCount = 0; // 已答题数
+        this.consecutiveCorrect = 0; // 连续正确次数
+        this.consecutiveWrong = 0;   // 连续错误次数
+        this.levelHistory = [];      // 能力值变化历史
+      }
+
+      // 获取当前能力级别
+      getCurrentLevel() {
+        if (this.ability < 40) return "初级";
+        if (this.ability < 70) return "中级";
+        return "高级";
+      }
+
+      // 获取当前能力级别对应的颜色
+      getLevelColor() {
+        if (this.ability < 40) return "text-red-500";
+        if (this.ability < 70) return "text-yellow-500";
+        return "text-green-500";
+      }
+
+      // 根据能力级别获取JSON文件
+      getLevelFile(baseFile) {
+        const level = this.getCurrentLevel();
+        const levelMap = {
+          "初级": "basic",
+          "中级": "intermediate",
+          "高级": "advanced"
+        };
+        const prefix = baseFile.split('.')[0];
+        return `${prefix}_${levelMap[level]}.json`;
+      }
+
+      // 更新能力值
+      updateAbility(isCorrect, questionDifficulty) {
+        this.questionCount++;
+        
+        // 计算动态调整系数（随题数衰减）
+        const k = 30 / Math.sqrt(this.questionCount);
+        
+        // 计算预期正确率 (IRT简化版)
+        const pCorrect = 1 / (1 + Math.exp(-(this.ability - questionDifficulty)/20));
+        
+        // 更新能力值
+        if (isCorrect) {
+          this.ability += k * (1 - pCorrect);  // 答对：超过预期则小幅提升，反之大幅提升
+          this.consecutiveCorrect++;
+          this.consecutiveWrong = 0;
+        } else {
+          this.ability -= k * pCorrect;        // 答错：预期越高惩罚越大
+          this.consecutiveWrong++;
+          this.consecutiveCorrect = 0;
+        }
+        
+        // 边界保护
+        this.ability = Math.max(0, Math.min(100, this.ability));
+        
+        // 记录历史
+        this.levelHistory.push({
+          ability: this.ability,
+          level: this.getCurrentLevel(),
+          timestamp: new Date().toISOString()
+        });
+
+        // 检查连续正确/错误
+        if (this.consecutiveCorrect >= 3) {
+          // 连续3题正确，强制跳级
+          this.ability = Math.min(100, this.ability + 15);
+          this.consecutiveCorrect = 0; // 重置
+        } else if (this.consecutiveWrong >= 2) {
+          // 连续2题错误，强制降级
+          this.ability = Math.max(0, this.ability - 15);
+          this.consecutiveWrong = 0; // 重置
+        }
+      }
+    }
+    
+    // 更新能力值显示
+    function updateAbilityDisplay() {
+      if (!adaptiveSystem) return;
+      
+      const level = adaptiveSystem.getCurrentLevel();
+      const levelColor = adaptiveSystem.getLevelColor();
+      
+      abilityScore.textContent = `${Math.round(adaptiveSystem.ability)} (${level})`;
+      abilityScore.className = `text-lg font-semibold ${levelColor}`;
+      abilityProgress.style.width = `${adaptiveSystem.ability}%`;
     }
     
     // 测验码验证
@@ -402,6 +512,7 @@ function playWrongSound() {
         quizCodeInput.classList.add('animate-shake');
         setTimeout(() => {
           quizCodeInput.classList.remove('animate-shake');
+          quizCodeInput.classList.remove('border-danger');
         }, 500);
       }
     });
@@ -451,6 +562,15 @@ function playWrongSound() {
       // 显示练习选择器
       exerciseSelector.style.display = 'block';
       
+      // 重置能力值显示
+      if (adaptiveSystem) {
+        abilityScore.textContent = `${Math.round(adaptiveSystem.ability)} (${adaptiveSystem.getCurrentLevel()})`;
+        abilityProgress.style.width = `${adaptiveSystem.ability}%`;
+      } else {
+        abilityScore.textContent = '50 (中级)';
+        abilityProgress.style.width = '50%';
+      }
+      
       // 停止任何活动的计时器
       stopTimer();
     }
@@ -482,7 +602,15 @@ function playWrongSound() {
           totalTimePerQuestion = 300; // 互动阅读300秒/题
         }
         currentJsonFile = file;
-        loadExercises(file);
+        
+        // 初始化自适应学习系统
+        adaptiveSystem = new AdaptiveLearningSystem();
+        updateAbilityDisplay();
+        
+        // 根据当前能力级别加载对应难度的题目
+        const levelFile = adaptiveSystem.getLevelFile(file);
+        loadExercises(levelFile);
+        
         // 隐藏选择面板
         exerciseSelector.style.display = 'none';
         // 启用导航按钮
@@ -506,7 +634,49 @@ function playWrongSound() {
         if (!response.ok) {
           throw new Error(`加载失败: ${response.status}`);
         }
-        exercises = await response.json();
+        const allExercises = await response.json();
+
+        // 过滤掉已经做过的题目（使用全局answeredQuestions记录）
+        const newExercises = allExercises.filter(exercise => {
+          // 使用题目标题和内容生成唯一标识
+          const key = `${exercise.title || exercise.text || exercise.passage || 'unknown'}_${exercise.type || 'unknown'}`;
+          return !answeredQuestions[key];
+        });
+        
+        // 如果当前等级没有新题目，尝试加载其他等级题目
+        if (newExercises.length === 0) {
+          console.log(`等级 ${jsonFile} 没有新题目，尝试加载其他等级题目`);
+          const levels = ['basic', 'intermediate', 'advanced'];
+          const currentLevel = jsonFile.split('_').pop().split('.')[0];
+          
+          for (const level of levels) {
+            if (level !== currentLevel) {
+              const altFile = jsonFile.replace(`_${currentLevel}`, `_${level}`);
+              const altResponse = await fetch(altFile);
+              if (altResponse.ok) {
+                const altExercises = await altResponse.json();
+                const altNewExercises = altExercises.filter(exercise => {
+                  const key = `${exercise.title || exercise.text || exercise.passage || 'unknown'}_${exercise.type || 'unknown'}`;
+                  return !answeredQuestions[key];
+                });
+                
+                if (altNewExercises.length > 0) {
+                  exercises = altNewExercises;
+                  userAnswers = new Array(exercises.length).fill(null);
+                  currentExerciseIndex = 0;
+                  updateProgressDisplay();
+                  renderCurrentExercise();
+                  return;
+                }
+              }
+            }
+          }
+          
+          // 所有等级都没有新题目
+          throw new Error('该题型所有题目已完成');
+        }
+
+        exercises = newExercises;
         userAnswers = new Array(exercises.length).fill(null);
         
         // 更新进度显示
@@ -514,6 +684,7 @@ function playWrongSound() {
         
         // 渲染第一题
         if (exercises.length > 0) {
+          currentExerciseIndex = 0;
           renderCurrentExercise();
         } else {
           throw new Error('该题型暂无练习数据');
@@ -524,16 +695,33 @@ function playWrongSound() {
           <div class="text-center py-12 fade-in">
             <i class="fa fa-exclamation-triangle text-accent text-4xl mb-4"></i>
             <h3 class="text-xl font-bold text-dark mb-2">加载练习失败</h3>
-            <p class="text-gray-600">请检查文件 ${jsonFile} 是否存在</p>
-            <p class="text-gray-500 mt-2">错误: ${error.message}</p>
-            <button id="retry-btn" class="mt-4 px-6 py-2 bg-primary text-white rounded-lg">
-              重试
-            </button>
+            <p class="text-gray-600">${error.message}</p>
+            <p class="text-gray-500 mt-2">文件: ${jsonFile}</p>
+            <div class="mt-6">
+              <button id="retry-btn" class="px-6 py-2 bg-primary text-white rounded-lg mr-2">
+                重试
+              </button>
+              <button id="change-level-btn" class="px-6 py-2 bg-secondary text-white rounded-lg">
+                更换等级
+              </button>
+            </div>
           </div>
         `;
+        
         // 重试按钮
         document.getElementById('retry-btn').addEventListener('click', () => {
           loadExercises(currentJsonFile);
+        });
+        
+        // 更换等级按钮
+        document.getElementById('change-level-btn').addEventListener('click', () => {
+          if (adaptiveSystem) {
+            // 强制改变等级
+            adaptiveSystem.ability = adaptiveSystem.ability < 40 ? 50 : 
+                                     adaptiveSystem.ability < 70 ? 80 : 30;
+            const levelFile = adaptiveSystem.getLevelFile(currentJsonFile);
+            loadExercises(levelFile);
+          }
         });
       }
     }
@@ -768,6 +956,30 @@ function playWrongSound() {
         submitBtn.classList.remove('hover:scale-105');
       }
       
+      // 更新自适应系统
+      if (adaptiveSystem) {
+        // 获取题目难度（如果未定义则使用默认值）
+        const difficulty = currentExercise.difficulty || 
+                         (adaptiveSystem.ability < 40 ? 30 : 
+                          adaptiveSystem.ability < 70 ? 55 : 80);
+        
+        const prevLevel = adaptiveSystem.getCurrentLevel();
+        adaptiveSystem.updateAbility(isCorrect, difficulty);
+        updateAbilityDisplay();
+        const newLevel = adaptiveSystem.getCurrentLevel();
+
+        // 如果能力级别发生变化，重新加载对应难度的题目
+        if (prevLevel !== newLevel) {
+          const levelFile = adaptiveSystem.getLevelFile(currentJsonFile);
+          loadExercises(levelFile);
+        }
+      }
+      
+      // 记录已做题目
+      const questionKey = `${currentExercise.title || currentExercise.text || currentExercise.passage || 'unknown'}_${currentExercise.type || 'unknown'}`;
+      answeredQuestions[questionKey] = true;
+      localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+      
       // 显示结果提示
       showResultToast(isCorrect, userInput, correctAnswers);
     }
@@ -865,7 +1077,6 @@ function playWrongSound() {
     // 上一题按钮点击事件
     prevBtn.addEventListener('click', () => {
       if (currentExerciseIndex > 0) {
-        hideResultToast();
         currentExerciseIndex--;
         renderCurrentExercise();
       }
@@ -873,91 +1084,30 @@ function playWrongSound() {
 
     // 下一题按钮点击事件
     nextBtn.addEventListener('click', () => {
+      // 关键修改：在切换到下一题前隐藏结果提示
+      hideResultToast();
+      
       if (currentExerciseIndex < exercises.length - 1) {
-        hideResultToast();
         currentExerciseIndex++;
         renderCurrentExercise();
       } else {
-        // 完成所有题目
-        showCompletionToast();
-      }
-    });
-
-    // 显示底部完成提示
-    function showCompletionToast() {
-      // 计算正确率
-      const correctCount = userAnswers.reduce((count, answers, index) => {
-        const currentExercise = exercises[index];
-        let correctAnswers = [];
-        if (currentExercise.answers) {
-          correctAnswers = currentExercise.answers.map(a => a.toLowerCase());
-        } else if (currentExercise.blanks) {
-          correctAnswers = currentExercise.blanks.map(b => b.correct.toLowerCase());
-        }
-        if (answers && answers.every((answer, i) => answer === correctAnswers[i])) {
-          return count + 1;
-        }
-        return count;
-      }, 0);
-      
-      const accuracy = Math.round((correctCount / exercises.length) * 100);
-      toastAccuracy.textContent = `${accuracy}%`;
-      
-      resultToast.classList.remove('hidden');
-      
-      // 修改提示内容为完成信息
-      toastIcon.className = 'mr-4 mt-1 w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0';
-      toastIcon.innerHTML = '<i class="fa fa-trophy text-xl"></i>';
-      toastTitle.textContent = '恭喜完成!';
-      toastTitle.className = 'font-bold text-xl text-primary';
-      toastMessage.textContent = '你已完成所有练习';
-      
-      // 隐藏正确答案，只显示正确率
-      correctAnswersContainer.classList.add('hidden');
-      accuracyContainer.classList.remove('hidden');
-      
-      // 修改按钮文本
-      closeToast.textContent = '返回首页';
-      closeToast.removeEventListener('click', hideResultToast);
-      closeToast.addEventListener('click', goHome);
-      
-      // 显示提示
-      toastContent.classList.remove('scale-95', 'opacity-0');
-      toastContent.classList.add('scale-100', 'opacity-100');
-      
-      // 播放完成音效
-      playCorrectSound();
-    }
-
-    // 监听键盘事件
-    document.addEventListener('keydown', (event) => {
-      // 如果按下的是回车键
-      if (event.key === 'Enter') {
-        const submitBtn = document.getElementById('submit-btn');
-        const isToastVisible = !resultToast.classList.contains('hidden');
+        // 完成练习
+        exerciseContainer.innerHTML = `
+          <div class="text-center py-12 fade-in">
+            <i class="fa fa-trophy text-accent text-5xl mb-4"></i>
+            <h2 class="text-2xl font-bold text-dark mb-4">练习完成！</h2>
+            <p class="text-gray-600 mb-6">恭喜你完成了所有练习题目</p>
+            <div class="bg-primary/10 p-4 rounded-lg">
+              <p class="text-primary font-medium mb-2">最终能力值</p>
+              <p class="text-3xl font-bold">${Math.round(adaptiveSystem.ability)} (${adaptiveSystem.getCurrentLevel()})</p>
+            </div>
+            <button id="restart-btn" class="mt-8 px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+              返回首页
+            </button>
+          </div>
+        `;
         
-        // 如果结果提示可见，关闭提示
-        if (isToastVisible) {
-          hideResultToast();
-          return;
-        }
-        
-        // 如果提交按钮存在且未禁用，点击提交按钮
-        if (submitBtn && !submitBtn.disabled) {
-          submitBtn.click();
-        }
-      }
-    });
-    
-    // 滚动时导航栏效果
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.classList.add('py-2');
-        header.classList.remove('py-3');
-      } else {
-        header.classList.add('py-3');
-        header.classList.remove('py-2');
+        document.getElementById('restart-btn').addEventListener('click', goHome);
       }
     });
   </script>
