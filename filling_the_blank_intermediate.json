@@ -1,602 +1,377 @@
 [
   {
     "title": "Question 1",
-    "text": "We go to school by b[BLANK][BLANK].",
-    "answers": ["u", "s"]
+    "text": "Lions are fierce pre[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] in the African savannah.",
+    "answers": ["d", "a", "t", "o", "r", "s"]
   },
   {
     "title": "Question 2",
-    "text": "My brother is very ta[BLANK][BLANK].",
-    "answers": ["l", "l"]
+    "text": "The deer became easy pre[BLANK] for the hungry wolf.",
+    "answers": ["y"]
   },
   {
     "title": "Question 3",
-    "text": "The project should be finished so[BLANK][BLANK] and then I’ll be able to work on some other tasks.",
-    "answers": ["o", "n"]
+    "text": "The documentary about ancient Egypt is really fas[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["c", "i", "n", "a", "t", "i", "n", "g"]
   },
   {
     "title": "Question 4",
-    "text": "She bakes delicious coo[BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["k", "i", "e", "s"]
+    "text": "The human body has a complex me[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] for fighting diseases.",
+    "answers": ["c", "h", "a", "n", "i", "s", "m"]
   },
   {
     "title": "Question 5",
-    "text": "The cat is sleeping on the ch[BLANK][BLANK][BLANK].",
-    "answers": ["a", "i", "r"]
+    "text": "Some animals use camouflage as a de[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] me[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["f", "e", "n", "s", "e", " ", "m", "e", "c", "h", "a", "n", "i", "s", "m"]
   },
   {
     "title": "Question 6",
-    "text": "I lost my key and can’t op[BLANK][BLANK] the door.",
-    "answers": ["e", "n"]
+    "text": "Species ev[BLANK][BLANK][BLANK] over time to adapt to their environments.",
+    "answers": ["o", "l", "v", "e"]
   },
   {
     "title": "Question 7",
-    "text": "I like to dr[BLANK][BLANK] pictures in my free time.",
-    "answers": ["a", "w"]
+    "text": "There is a lot of va[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] in the colors of these flowers.",
+    "answers": ["r", "i", "a", "t", "i", "o", "n"]
   },
   {
     "title": "Question 8",
-    "text": "She always si[BLANK][BLANK][BLANK] a song in the morning.",
-    "answers": ["n", "g", "s"]
+    "text": "It's important to make et[BLANK][BLANK][BLANK][BLANK] decisions in business.",
+    "answers": ["h", "i", "c", "a", "l"]
   },
   {
     "title": "Question 9",
-    "text": "He drinks a glass of mi[BLANK][BLANK] every morning.",
-    "answers": ["l", "k"]
+    "text": "Birds spend the morning fo[BLANK][BLANK][BLANK][BLANK][BLANK] for food in the garden.",
+    "answers": ["r", "a", "g", "i", "n", "g"]
   },
   {
     "title": "Question 10",
-    "text": "We need to cl[BLANK][BLANK][BLANK] the house every weekend.",
-    "answers": ["e", "a", "n"]
+    "text": "Weddings are special oc[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] that bring families together.",
+    "answers": ["c", "a", "s", "i", "o", "n"]
   },
   {
     "title": "Question 11",
-    "text": "In summer, the weather is usually h[BLANK][BLANK].",
-    "answers": ["o", "t"]
+    "text": "The peaceful sur[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] of the cabin are perfect for relaxation.",
+    "answers": ["r", "o", "u", "n", "d", "i", "n", "g", "s"]
   },
   {
     "title": "Question 12",
-    "text": "Please, turn off the li[BLANK][BLANK][BLANK] when you leave the room.",
-    "answers": ["g", "h", "t"]
+    "text": "One key fe[BLANK][BLANK][BLANK][BLANK][BLANK] of this phone is its long - lasting battery.",
+    "answers": ["a", "t", "u", "r", "e"]
   },
   {
     "title": "Question 13",
-    "text": "As soon as the rain st[BLANK][BLANK][BLANK], we’ll go for a walk in the park.",
-    "answers": ["o", "p", "s"]
+    "text": "Rabbits can re[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] very quickly in the right conditions.",
+    "answers": ["p", "r", "o", "d", "u", "c", "e"]
   },
   {
     "title": "Question 14",
-    "text": "The flowers in the garden are very pre[BLANK][BLANK][BLANK].",
-    "answers": ["t", "t", "y"]
+    "text": "Polar regions are experiencing the effects of ex[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] cli[BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["t", "r", "e", "m", "e", " ", "c", "l", "i", "m", "a", "t", "e"]
   },
   {
     "title": "Question 15",
-    "text": "We’re looking forward to the wee[BLANK][BLANK][BLANK][BLANK] so we can visit our friends in the city.",
-    "answers": ["k", "e", "n", "d"]
+    "text": "A ha[BLANK][BLANK] ran across the field and disappeared into the bushes.",
+    "answers": ["r", "e"]
   },
   {
     "title": "Question 16",
-    "text": "I can’t wait for sum[BLANK][BLANK][BLANK] to arrive so I can head to the beach!",
-    "answers": ["m", "e", "r"]
+    "text": "The pr[BLANK][BLANK][BLANK][BLANK][BLANK] reason for his success is hard work.",
+    "answers": ["i", "m", "a", "r", "y"]
   },
   {
     "title": "Question 17",
-    "text": "The company is launching a new product line next qua[BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["r", "t", "e", "r"]
+    "text": "The fox's fu[BLANK] is thick and warm in winter.",
+    "answers": ["r"]
   },
   {
     "title": "Question 18",
-    "text": "The diplomat’s speech focused on fostering intern[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] cooperation.",
-    "answers": ["a", "t", "i", "o", "n", "a", "l"]
-  },
-  {
-    "title": "Question 19",
-    "text": "Their discussion revolved around various poli[BLANK][BLANK][BLANK][BLANK][BLANK] issues.",
-    "answers": ["t", "i", "c", "a", "l"]
-  },
-  {
-    "title": "Question 20",
-    "text": "Cybersecurity is a critical aspect of modern tech[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["n", "o", "l", "o", "g", "y"]
-  },
-  {
-    "title": "Question 21",
-    "text": "Environmental conservation requires a sustainable app[BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["r", "o", "a", "c", "h"]
-  },
-  {
-    "title": "Question 22",
-    "text": "We’ve arra[BLANK][BLANK][BLANK][BLANK] a meeting for the entire team next week to discuss the new project.",
-    "answers": ["n", "g", "e", "d"]
-  },
-  {
-    "title": "Question 23",
-    "text": "We’re planning a trip to the count[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] once the weather gets warmer.",
-    "answers": ["r", "y", "s", "i", "d", "e"]
-  },
-  {
-    "title": "Question 24",
-    "text": "They have sched[BLANK][BLANK][BLANK][BLANK] a conference for all the employees next month.",
-    "answers": ["u", "l", "e", "d"]
-  },
-  {
-    "title": "Question 25",
-    "text": "She’s counting down the days until her birthday so she can cele[BLANK][BLANK][BLANK][BLANK][BLANK] with friends.",
-    "answers": ["b", "r", "a", "t", "e"]
-  },
-  {
-    "title": "Question 26",
-    "text": "The magician’s act was truly asto[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["n", "i", "s", "h", "i", "n", "g"]
-  },
-  {
-    "title": "Question 27",
-    "text": "She demonstrated her consid[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] capabilities in language learning.",
-    "answers": ["e", "r", "a", "b", "l", "e"]
-  },
-  {
-    "title": "Question 28",
-    "text": "They’ve announced a new pol[BLANK][BLANK][BLANK] for employee attendance.",
-    "answers": ["i", "c", "y"]
-  },
-  {
-    "title": "Question 29",
-    "text": "The university has offered me a schol[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["a", "r", "s", "h", "i", "p"]
-  },
-  {
-    "title": "Question 30",
-    "text": "I’m eag[BLANK][BLANK][BLANK][BLANK] anticipating the arrival of spring so I can go hiking in the mountains.",
-    "answers": ["e", "r", "l", "y"]
-  },
-  {
-    "title": "Question 31",
-    "text": "He jo[BLANK][BLANK] down his thoughts in a notebook.",
-    "answers": ["t", "s"]
-  },
-  {
-    "title": "Question 32",
-    "text": "She has a remarkable ability to pers[BLANK][BLANK][BLANK][BLANK][BLANK] in the face of adversity.",
-    "answers": ["e", "v", "e", "r", "e"]
-  },
-  {
-    "title": "Question 33",
-    "text": "Once the renovations are complete, we can start planning our housew[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] party.",
-    "answers": ["a", "r", "m", "i", "n", "g"]
-  },
-  {
-    "title": "Question 34",
-    "text": "The theory of relativity revolutionized our understanding of the uni[BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["v", "e", "r", "s", "e"]
-  },
-  {
-    "title": "Question 35",
-    "text": "He’s hoping to get prom[BLANK][BLANK][BLANK][BLANK] to a manager position soon.",
-    "answers": ["o", "t", "e", "d"]
-  },
-  {
-    "title": "Question 36",
-    "text": "Our teacher emphasizes the importance of cri[BLANK][BLANK][BLANK][BLANK][BLANK] thinking.",
-    "answers": ["t", "i", "c", "a", "l"]
-  },
-  {
-    "title": "Question 37",
-    "text": "We need to finalize the budget before the new fis[BLANK][BLANK][BLANK] year starts.",
-    "answers": ["c", "a", "l"]
-  },
-  {
-    "title": "Question 38",
-    "text": "The team will deb[BLANK][BLANK][BLANK][BLANK] after the product launch.",
-    "answers": ["r", "i", "e", "f"]
-  },
-  {
-    "title": "Question 39",
-    "text": "The documentary provided a compr[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] perspective on the issue.",
-    "answers": ["e", "h", "e", "n", "s", "i", "v", "e"]
-  },
-  {
-    "title": "Question 40",
-    "text": "The presentation is almost wra[BLANK][BLANK][BLANK][BLANK] up, and after that I’ll finally have some time to catch up on emails.",
-    "answers": ["p", "p", "e", "d"]
-  },
-  {
-    "title": "Question 41",
-    "text": "Her hypothesis about quantum mechanics was inno[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["v", "a", "t", "i", "v", "e"]
-  },
-  {
-    "title": "Question 42",
-    "text": "The treaty aimed at estab[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] peace in the region.",
-    "answers": ["l", "i", "s", "h", "i", "n", "g"]
-  },
-  {
-    "title": "Question 43",
-    "text": "It’s essential to have a bal[BLANK][BLANK][BLANK][BLANK][BLANK] diet for good health.",
-    "answers": ["a", "n", "c", "e", "d"]
-  },
-  {
-    "title": "Question 44",
-    "text": "The archaeologist was excited to explore the anc[BLANK][BLANK][BLANK][BLANK] ruins discovered in the jungle.",
-    "answers": ["i", "e", "n", "t"]
-  },
-  {
-    "title": "Question 45",
-    "text": "The scientist made a significant disc[BLANK][BLANK][BLANK][BLANK][BLANK] in the field of biology.",
-    "answers": ["o", "v", "e", "r", "y"]
-  },
-  {
-    "title": "Question 46",
-    "text": "As soon as the snow me[BLANK][BLANK][BLANK], we’ll start planting flowers in the garden.",
-    "answers": ["l", "t", "s"]
-  },
-  {
-    "title": "Question 47",
-    "text": "He plays the guitar excep[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] well.",
-    "answers": ["t", "i", "o", "n", "a", "l", "l", "y"]
-  },
-  {
-    "title": "Question 48",
-    "text": "The instructions were ambi[BLANK][BLANK][BLANK][BLANK][BLANK], leading to confusion.",
-    "answers": ["g", "u", "o", "u", "s"]
-  },
-  {
-    "title": "Question 49",
-    "text": "She’s excited about the upco[BLANK][BLANK][BLANK][BLANK] concert and has already bought tickets.",
-    "answers": ["m", "i", "n", "g"]
-  },
-  {
-    "title": "Question 50",
-    "text": "The novel’s plot was intr[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["i", "g", "u", "i", "n", "g"]
-  },
-  {
-    "title": "Question 51",
-    "text": "Economic disparity often leads to soc[BLANK][BLANK][BLANK] unrest.",
-    "answers": ["i", "a", "l"]
-  },
-  {
-    "title": "Question 52",
-    "text": "Her painting won the first prize for its orig[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["i", "n", "a", "l", "i", "t", "y"]
-  },
-  {
-    "title": "Question 53",
-    "text": "The artist’s abstract work challenges traditional perc[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["e", "p", "t", "i", "o", "n"]
-  },
-  {
-    "title": "Question 54",
-    "text": "They celebrated their anniversary in a qua[BLANK][BLANK][BLANK] restaurant.",
-    "answers": ["i", "n", "t"]
-  },
-  {
-    "title": "Question 55",
-    "text": "The philosopher’s thesis on existentialism was prov[BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["o", "k", "i", "n", "g"]
-  },
-  {
-    "title": "Question 56",
-    "text": "We’re hoping to finalize the contract negoti[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] soon so we can move forward with the project.",
-    "answers": ["a", "t", "i", "o", "n", "s"]
-  },
-  {
-    "title": "Question 57",
-    "text": "His autobi[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] provides an introspective look into a life of resilience.",
-    "answers": ["o", "g", "r", "a", "p", "h", "y"]
-  },
-  {
-    "title": "Question 58",
-    "text": "Her enthusiasm is cont[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["a", "g", "i", "o", "u", "s"]
-  },
-  {
-    "title": "Question 59",
-    "text": "The director’s vision for the film was truly unpre[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["c", "e", "d", "e", "n", "t", "e", "d"]
-  },
-  {
-    "title": "Question 60",
-    "text": "The novel’s intricate narrative structure was a testament to the author’s inge[BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["n", "u", "i", "t", "y"]
-  },
-  {
-    "title": "Question 61",
-    "text": "The hik[BLANK][BLANK][BLANK] trail led us to a hidden waterfall.",
-    "answers": ["i", "n", "g"]
-  },
-  {
-    "title": "Question 62",
-    "text": "Her thesis required extensive rese[BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["a", "r", "c", "h"]
-  },
-  {
-    "title": "Question 63",
-    "text": "The chef added a pinch of sal[BLANK] to enhance the flavor.",
+    "text": "He made a be[BLANK] that his team would win the game.",
     "answers": ["t"]
   },
   {
+    "title": "Question 19",
+    "text": "The northern lights are a beautiful natural phe[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["n", "o", "m", "e", "n", "o", "n"]
+  },
+  {
+    "title": "Question 20",
+    "text": "Smartphones are now wi[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] in most countries.",
+    "answers": ["d", "e", "s", "p", "r", "e", "a", "d"]
+  },
+  {
+    "title": "Question 21",
+    "text": "The effects of this medicine are we[BLANK][BLANK]-do[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] in medical research.",
+    "answers": ["l", "l", "c", "u", "m", "e", "n", "t", "e", "d"]
+  },
+  {
+    "title": "Question 22",
+    "text": "The accident caused him to suffer from am[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] and forget recent events.",
+    "answers": ["n", "e", "s", "i", "a"]
+  },
+  {
+    "title": "Question 23",
+    "text": "When I say 'mystery', I re[BLANK][BLANK] to an unsolved crime.",
+    "answers": ["f", "e", "r"]
+  },
+  {
+    "title": "Question 24",
+    "text": "The police are investigating a strange in[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] in the neighborhood.",
+    "answers": ["c", "i", "d", "e", "n", "t"]
+  },
+  {
+    "title": "Question 25",
+    "text": "If all men are mortal and Socrates is a man, it fo[BLANK][BLANK][BLANK][BLANK][BLANK] that Socrates is mortal.",
+    "answers": ["l", "l", "o", "w", "s"]
+  },
+  {
+    "title": "Question 26",
+    "text": "The famous sc[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] created a stunning statue for the park.",
+    "answers": ["u", "l", "p", "t", "o", "r"]
+  },
+  {
+    "title": "Question 27",
+    "text": "The museum has a large collection of modern sc[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["u", "l", "p", "t", "u", "r", "e"]
+  },
+  {
+    "title": "Question 28",
+    "text": "The painting po[BLANK][BLANK][BLANK][BLANK] a beautiful landscape with mountains and a lake.",
+    "answers": ["r", "t", "r", "a", "y"]
+  },
+  {
+    "title": "Question 29",
+    "text": "The artist painted a detailed po[BLANK][BLANK][BLANK][BLANK][BLANK] of the queen.",
+    "answers": ["r", "t", "r", "a", "i", "t"]
+  },
+  {
+    "title": "Question 30",
+    "text": "Her name is pro[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] displayed on the award.",
+    "answers": ["m", "i", "n", "e", "n", "t", "l", "y"]
+  },
+  {
+    "title": "Question 31",
+    "text": "The store will di[BLANK][BLANK][BLANK][BLANK][BLANK] new products in the window.",
+    "answers": ["s", "p", "l", "a", "y"]
+  },
+  {
+    "title": "Question 32",
+    "text": "The ma[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] of people prefer coffee over tea in the morning.",
+    "answers": ["j", "o", "r", "i", "t", "y"]
+  },
+  {
+    "title": "Question 33",
+    "text": "The ra[BLANK][BLANK][BLANK] of boys to girls in the class is 2:1.",
+    "answers": ["t", "i", "o"]
+  },
+  {
+    "title": "Question 34",
+    "text": "He studied hard, the[BLANK][BLANK][BLANK][BLANK] improving his grades significantly.",
+    "answers": ["r", "e", "b", "y"]
+  },
+  {
+    "title": "Question 35",
+    "text": "The rain will help di[BLANK][BLANK][BLANK][BLANK][BLANK] the risk of forest fires.",
+    "answers": ["m", "i", "n", "i", "s", "h"]
+  },
+  {
+    "title": "Question 36",
+    "text": "She is studying ar[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] at the university to become a designer.",
+    "answers": ["c", "h", "i", "t", "e", "c", "t", "u", "r", "e"]
+  },
+  {
+    "title": "Question 37",
+    "text": "The main fu[BLANK][BLANK][BLANK][BLANK][BLANK] of a chair is to provide a place to sit.",
+    "answers": ["n", "c", "t", "i", "o", "n"]
+  },
+  {
+    "title": "Question 38",
+    "text": "The new neighborhood has many re[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] buildings.",
+    "answers": ["s", "i", "d", "e", "n", "t", "i", "a", "l"]
+  },
+  {
+    "title": "Question 39",
+    "text": "The bridge has a strong and stable st[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["r", "u", "c", "t", "u", "r", "e"]
+  },
+  {
+    "title": "Question 40",
+    "text": "The th[BLANK][BLANK][BLANK][BLANK] of the book is love and friendship.",
+    "answers": ["e", "m", "e"]
+  },
+  {
+    "title": "Question 41",
+    "text": "The art ex[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] features paintings from local artists.",
+    "answers": ["h", "i", "b", "i", "t", "i", "o", "n"]
+  },
+  {
+    "title": "Question 42",
+    "text": "He graduated from a pre[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] university and got a good job.",
+    "answers": ["s", "t", "i", "g", "i", "o", "u", "s"]
+  },
+  {
+    "title": "Question 43",
+    "text": "She performed a beautiful so[BLANK][BLANK] on the piano.",
+    "answers": ["l", "o"]
+  },
+  {
+    "title": "Question 44",
+    "text": "We made an as[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] that the meeting would be canceled.",
+    "answers": ["s", "u", "m", "p", "t", "i", "o", "n"]
+  },
+  {
+    "title": "Question 45",
+    "text": "Washing your hands can help kill harmful ba[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["c", "t", "e", "r", "i", "a"]
+  },
+  {
+    "title": "Question 46",
+    "text": "The ex[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] of space has led to many scientific discoveries.",
+    "answers": ["p", "l", "o", "r", "a", "t", "i", "o", "n"]
+  },
+  {
+    "title": "Question 47",
+    "text": "Learning to read is a fu[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] skill for children.",
+    "answers": ["n", "d", "a", "m", "e", "n", "t", "a", "l"]
+  },
+  {
+    "title": "Question 48",
+    "text": "Rocks are mostly in[BLANK][BLANK][BLANK][BLANK][BLANK].",
+    "answers": ["o", "r", "g", "a", "n", "i", "c"]
+  },
+  {
+    "title": "Question 49",
+    "text": "Or[BLANK][BLANK][BLANK][BLANK] fruits and vegetables are grown without pesticides.",
+    "answers": ["g", "a", "n", "i", "c"]
+  },
+  {
+    "title": "Question 50",
+    "text": "It can be hard to ve[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] your feelings when you're upset.",
+    "answers": ["r", "b", "a", "l", "i", "z", "e"]
+  },
+  {
+    "title": "Question 51",
+    "text": "The th[BLANK][BLANK][BLANK][BLANK] of relativity changed our understanding of the universe.",
+    "answers": ["e", "o", "r", "y"]
+  },
+  {
+    "title": "Question 52",
+    "text": "Our town has a good relationship with the ne[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] communities.",
+    "answers": ["i", "g", "h", "b", "o", "r", "i", "n", "g"]
+  },
+  {
+    "title": "Question 53",
+    "text": "A cha[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] of this plant is its bright red flowers.",
+    "answers": ["r", "a", "c", "t", "e", "r", "i", "s", "t", "i", "c"]
+  },
+  {
+    "title": "Question 54",
+    "text": "The re[BLANK][BLANK][BLANK][BLANK][BLANK] of this movie is very large, which means it has many viewers.",
+    "answers": ["a", "d", "e", "r", "s", "h", "i", "p"]
+  },
+  {
+    "title": "Question 55",
+    "text": "The fol[BLANK][BLANK][BLANK] passed down from generation to generation tells the story of the local people.",
+    "answers": ["k", "t", "a", "l", "e"]
+  },
+  {
+    "title": "Question 56",
+    "text": "The leg[BLANK][BLANK][BLANK] of the hero has inspired many people for a long time.",
+    "answers": ["e", "n", "d"]
+  },
+  {
+    "title": "Question 57",
+    "text": "Solar panels can co[BLANK][BLANK][BLANK][BLANK] sunlight into electricity, which is very useful.",
+    "answers": ["n", "v", "e", "r", "t"]
+  },
+  {
+    "title": "Question 58",
+    "text": "The sed[BLANK][BLANK][BLANK][BLANK] at the bottom of the lake may contain some valuable minerals.",
+    "answers": ["i", "m", "e", "n", "t"]
+  },
+  {
+    "title": "Question 59",
+    "text": "The geo[BLANK][BLANK][BLANK][BLANK][BLANK] study shows that there was volcanic activity here in the past.",
+    "answers": ["l", "o", "g", "i", "c", "a", "l"]
+  },
+  {
+    "title": "Question 60",
+    "text": "The project is now in its fi[BLANK][BLANK][BLANK] phase, and we need to work hard to finish it.",
+    "answers": ["n", "a", "l"]
+  },
+  {
+    "title": "Question 61",
+    "text": "To re[BLANK][BLANK][BLANK][BLANK] good employees, the company offers high salaries and good benefits.",
+    "answers": ["t", "a", "i", "n"]
+  },
+  {
+    "title": "Question 62",
+    "text": "Oxy[BLANK][BLANK] is an important el[BLANK][BLANK][BLANK][BLANK] for human life.",
+    "answers": ["g", "e", "n", "e", "l", "e", "m", "e", "n", "t"]
+  },
+  {
+    "title": "Question 63",
+    "text": "Some plants can re[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] asexually without seeds.",
+    "answers": ["p", "r", "o", "d", "u", "c", "e"]
+  },
+  {
     "title": "Question 64",
-    "text": "Quantum physics involves complex calc[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["u", "l", "a", "t", "i", "o", "n"]
+    "text": "This discovery is a si[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] breakthrough in science, which will change our world.",
+    "answers": ["g", "n", "i", "f", "i", "c", "a", "n", "t"]
   },
   {
     "title": "Question 65",
-    "text": "We need to verify the authe[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] of the document.",
-    "answers": ["n", "t", "i", "c", "i", "t", "y"]
+    "text": "We received a su[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] amount of feedback from customers, which helps us improve our products.",
+    "answers": ["b", "s", "t", "a", "n", "t", "i", "a", "l"]
   },
   {
     "title": "Question 66",
-    "text": "The toddler took his first unassi[BLANK][BLANK][BLANK][BLANK] steps yesterday.",
-    "answers": ["s", "t", "e", "d"]
+    "text": "The for[BLANK][BLANK][BLANK] has an ab[BLANK][BLANK][BLANK][BLANK] supply of fresh water, which is very important for the animals living there.",
+    "answers": ["e", "s", "t", "u", "n", "d", "a", "n", "t"]
   },
   {
     "title": "Question 67",
-    "text": "Ancient civili[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] developed advanced irrigation systems.",
-    "answers": ["z", "a", "t", "i", "o", "n", "s"]
+    "text": "The bad we[BLANK][BLANK][BLANK][BLANK] has ad[BLANK][BLANK][BLANK][BLANK] affected the harvest, and the farmers are very worried.",
+    "answers": ["a", "t", "h", "e", "r", "v", "e", "r", "s", "e", "l", "y"]
   },
   {
     "title": "Question 68",
-    "text": "The orchestra performed Beetho[BLANK][BLANK][BLANK]'s Fifth Symphony.",
-    "answers": ["v", "e", "n"]
+    "text": "During the drought, wa[BLANK][BLANK] became sc[BLANK][BLANK][BLANK] in the region, and people had to save water.",
+    "answers": ["t", "e", "r", "a", "r", "c", "e"]
   },
   {
     "title": "Question 69",
-    "text": "Effective communi[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] is key in relationships.",
-    "answers": ["c", "a", "t", "i", "o", "n", "s"]
+    "text": "Natural phe[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] like earthquakes are difficult to predict, but scientists are working hard on it.",
+    "answers": ["n", "o", "m", "e", "n", "a"]
   },
   {
     "title": "Question 70",
-    "text": "The detective noticed a minus[BLANK][BLANK][BLANK][BLANK] detail at the crime scene.",
-    "answers": ["c", "u", "l", "e"]
+    "text": "Please don't in[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] me while I'm speaking. I need to focus.",
+    "answers": ["t", "e", "r", "r", "u", "p", "t"]
   },
   {
     "title": "Question 71",
-    "text": "Global warming affects polar i[BLANK][BLANK]caps.",
-    "answers": ["c", "e"]
+    "text": "Technology continues to e[BLANK][BLANK][BLANK][BLANK] at a rapid pace, and we need to keep up with it.",
+    "answers": ["v", "o", "l", "v", "e"]
   },
   {
     "title": "Question 72",
-    "text": "Her argument was logically cohe[BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["r", "e", "n", "t"]
+    "text": "We need to pr[BLANK][BLANK][BLANK][BLANK][BLANK] our natural resources for future generations. It's our responsibility.",
+    "answers": ["e", "s", "e", "r", "v", "e"]
   },
   {
     "title": "Question 73",
-    "text": "The museum displayed prehist[BLANK][BLANK][BLANK][BLANK]artifacts.",
-    "answers": ["o", "r", "i", "c"]
+    "text": "One pr[BLANK][BLANK][BLANK][BLANK][BLANK] of water is that it freezes at 0 degrees Celsius. It's a basic physical fact.",
+    "answers": ["o", "p", "e", "r", "t", "y"]
   },
   {
     "title": "Question 74",
-    "text": "Neuroscientists study the bra[BLANK][BLANK]'s plasticity.",
-    "answers": ["i", "n"]
+    "text": "The da[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] helped us understand market trends better. It's very useful for business decisions.",
+    "answers": ["t", "a", "a", "n", "a", "l", "y", "s", "i", "s"]
   },
   {
     "title": "Question 75",
-    "text": "The diplomat showed remar[BLANK][BLANK][BLANK][BLANK][BLANK] tact during negotiations.",
-    "answers": ["k", "a", "b", "l", "e"]
-  },
-  {
-    "title": "Question 76",
-    "text": "Philosophers debate eth[BLANK][BLANK][BLANK][BLANK] dilemmas frequently.",
-    "answers": ["i", "c", "a", "l"]
-  },
-  {
-    "title": "Question 77",
-    "text": "The software requires regu[BLANK][BLANK][BLANK]updates.",
-    "answers": ["l", "a", "r"]
-  },
-  {
-    "title": "Question 78",
-    "text": "Astr[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] observed a new nebula through the telescope.",
-    "answers": ["o", "n", "o", "m", "e", "r", "s"]
-  },
-  {
-    "title": "Question 79",
-    "text": "The journalist interviewed eyewit[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["n", "e", "s", "s", "e", "s"]
-  },
-  {
-    "title": "Question 80",
-    "text": "Bioluminesc[BLANK][BLANK][BLANK][BLANK] occurs in deep-sea creatures.",
-    "answers": ["e", "n", "c", "e"]
-  },
-  {
-    "title": "Question 81",
-    "text": "The architect designed an en[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK]structure.",
-    "answers": ["o", "r", "m", "o", "u", "s"]
-  },
-  {
-    "title": "Question 82",
-    "text": "Psychological resili[BLANK][BLANK][BLANK][BLANK] helps overcome trauma.",
-    "answers": ["e", "n", "c", "e"]
-  },
-  {
-    "title": "Question 83",
-    "text": "The lawyer presented irref[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] evidence.",
-    "answers": ["u", "t", "a", "b", "l", "e"]
-  },
-  {
-    "title": "Question 84",
-    "text": "Meteorologists pred[BLANK][BLANK][BLANK]severe storms tomorrow.",
-    "answers": ["i","c", "t"]
-  },
-  {
-    "title": "Question 85",
-    "text": "The novel's protagonist showed treme[BLANK][BLANK][BLANK][BLANK][BLANK] courage.",
-    "answers": ["n", "d", "o", "u", "s"]
-  },
-  {
-    "title": "Question 86",
-    "text": "Industrial revol[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] transformed manufacturing.",
-    "answers": ["u", "t", "i", "o", "n", "s"]
-  },
-  {
-    "title": "Question 87",
-    "text": "The chemist analyzed the compo[BLANK][BLANK][BLANK]'s molecular structure.",
-    "answers": ["u", "n", "d"]
-  },
-  {
-    "title": "Question 88",
-    "text": "Medieval cast[BLANK][BLANK][BLANK] dot the European countryside.",
-    "answers": ["l", "e", "s"]
-  },
-  {
-    "title": "Question 89",
-    "text": "Artificial intel[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] is advancing rapidly.",
-    "answers": ["l", "i", "g", "e", "n", "c", "e"]
-  },
-  {
-    "title": "Question 90",
-    "text": "The athlete's endu[BLANK][BLANK][BLANK][BLANK][BLANK] impressed the coaches.",
-    "answers": ["r", "a", "n", "c", "e"]
-  },
-  {
-    "title": "Question 91",
-    "text": "Microbiol[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] study microscopic organisms.",
-    "answers": ["o", "g", "i", "s", "t", "s"]
-  },
-  {
-    "title": "Question 92",
-    "text": "The entrepreneur had a pro[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] business plan.",
-    "answers": ["f", "i", "t", "a", "b", "l", "e"]
-  },
-  {
-    "title": "Question 93",
-    "text": "Renaissance art embod[BLANK][BLANK][BLANK]humanist ideals.",
-    "answers": ["i", "e", "s"]
-  },
-  {
-    "title": "Question 94",
-    "text": "The engineer solved the problem ing[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK].",
-    "answers": ["e", "n", "i", "o", "u", "s", "l", "y"]
-  },
-  {
-    "title": "Question 95",
-    "text": "Climate chan[BLANK][BLANK][BLANK] affects biodiversity.",
-    "answers": ["g", "e", "s"]
-  },
-  {
-    "title": "Question 96",
-    "text": "The mathematician developed an ele[BLANK][BLANK][BLANK][BLANK]proof.",
-    "answers": ["g", "a", "n", "t"]
-  },
-  {
-    "title": "Question 97",
-    "text": "Pharmaceutical comp[BLANK][BLANK][BLANK][BLANK][BLANK]research new drugs.",
-    "answers": ["a", "n", "i", "e", "s"]
-  },
-  {
-    "title": "Question 98",
-    "text": "The poet used vivid metap[BLANK][BLANK][BLANK][BLANK]in her verses.",
-    "answers": ["h", "o", "r", "s"]
-  },
-  {
-    "title": "Question 99",
-    "text": "Archaeological exc[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] revealed ancient tools.",
-    "answers": ["a", "v", "a", "t", "i", "o", "n", "s"]
-  },
-  {
-    "title": "Question 100",
-    "text": "Cognitive psy[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] explores memory processes.",
-    "answers": ["c", "h", "o", "l", "o", "g", "y"]
-  },
-  {
-    "title": "Question 101",
-    "text": "The surgeon performed the oper[BLANK][BLANK][BLANK][BLANK][BLANK]flawlessly.",
-    "answers": ["a", "t", "i", "o", "n"]
-  },
-  {
-    "title": "Question 102",
-    "text": "Economic infl[BLANK][BLANK][BLANK][BLANK][BLANK]reduces purchasing power.",
-    "answers": ["a", "t", "i", "o", "n"]
-  },
-  {
-    "title": "Question 103",
-    "text": "The pianist's interp[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] of Chopin was moving.",
-    "answers": ["r", "e", "t", "a", "t", "i", "o", "n"]
-  },
-  {
-    "title": "Question 104",
-    "text": "Volcanic erup[BLANK][BLANK][BLANK][BLANK][BLANK] can alter global climate.",
-    "answers": ["t", "i", "o", "n", "s"]
-  },
-  {
-    "title": "Question 105",
-    "text": "The linguist studied synta[BLANK][BLANK][BLANK][BLANK]structures.",
-    "answers": ["c", "t", "i", "c"]
-  },
-  {
-    "title": "Question 106",
-    "text": "Nanot[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] enables microscopic engineering.",
-    "answers": ["e", "c", "h", "n", "o", "l", "o", "g", "y"]
-  },
-  {
-    "title": "Question 107",
-    "text": "The treaty ensured recip[BLANK][BLANK][BLANK][BLANK][BLANK]cooperation.",
-    "answers": ["r", "o", "c", "a", "l"]
-  },
-  {
-    "title": "Question 108",
-    "text": "Astrophysicists study c[BLANK][BLANK][BLANK][BLANK][BLANK] phenomena.",
-    "answers": ["o", "s", "m", "i", "c"]
-  },
-  {
-    "title": "Question 109",
-    "text": "The diagnosis was co[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK]by multiple tests.",
-    "answers": ["n", "f", "i", "r", "m", "e", "d"]
-  },
-  {
-    "title": "Question 110",
-    "text": "Environmental susta[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] is crucial for future generations.",
-    "answers": ["i", "n", "a", "b", "i", "l", "i", "t", "y"]
-  },
-  {
-    "title": "Question 111",
-    "text": "The composer's sym[BLANK][BLANK][BLANK][BLANK][BLANK] premiered at the concert hall.",
-    "answers": ["p", "h", "o", "n", "y"]
-  },
-  {
-    "title": "Question 112",
-    "text": "Quantum entangl[BLANK][BLANK][BLANK][BLANK][BLANK]connects particles instantly.",
-    "answers": ["e", "m", "e", "n", "t"]
-  },
-  {
-    "title": "Question 113",
-    "text": "The historian examined pri[BLANK][BLANK][BLANK][BLANK]sources carefully.",
-    "answers": ["m", "a", "r", "y"]
-  },
-  {
-    "title": "Question 114",
-    "text": "Biodegrad[BLANK][BLANK][BLANK][BLANK] materials reduce pollution.",
-    "answers": ["a", "b", "l", "e"]
-  },
-  {
-    "title": "Question 115",
-    "text": "The algorithm optimi[BLANK][BLANK][BLANK] energy consumption.",
-    "answers": ["z", "e", "d"]
-  },
-  {
-    "title": "Question 116",
-    "text": "Neuroplast[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] allows brain adaptation.",
-    "answers": ["i", "c", "i", "t", "y"]
-  },
-  {
-    "title": "Question 117",
-    "text": "The diplomat's medi[BLANK][BLANK][BLANK][BLANK][BLANK]prevented conflict.",
-    "answers": ["a", "t", "i", "o", "n"]
-  },
-  {
-    "title": "Question 118",
-    "text": "Crystallo[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] studies atomic structures.",
-    "answers": ["g", "r", "a", "p", "h", "y"]
-  },
-  {
-    "title": "Question 119",
-    "text": "The ecosystem's resil[BLANK][BLANK][BLANK][BLANK][BLANK]surprised scientists.",
-    "answers": ["i", "e", "n", "c", "e"]
-  },
-  {
-    "title": "Question 120",
-    "text": "Philosophers examine epist[BLANK][BLANK][BLANK][BLANK][BLANK][BLANK][BLANK] foundations.",
-    "answers": ["e", "m", "o", "l", "o", "g", "y"]
+    "text": "There is a di[BLANK][BLANK][BLANK][BLANK][BLANK] difference between the two products. You can easily tell them apart.",
+    "answers": ["s", "t", "i", "n", "c", "t"]
   }
 ]
