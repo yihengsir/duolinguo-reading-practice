@@ -90,6 +90,101 @@
       }
     }
   </style>
+  <style>
+    /* 添加高亮样式 */
+    .highlight {
+      background-color: #fef9c3; /* 黄色高亮 */
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+    
+    /* 正确高亮 */
+    .highlight-correct {
+      background-color: #bbf7d0; /* 绿色 */
+    }
+    
+    /* 错误高亮 */
+    .highlight-incorrect {
+      background-color: #fecaca; /* 红色 */
+    }
+    
+    /* 选项正确/错误状态 */
+    .border-green-500 {
+      border-color: #10b981;
+    }
+    
+    .bg-green-50 {
+      background-color: #f0fdf4;
+    }
+    
+    .border-red-500 {
+      border-color: #ef4444;
+    }
+    
+    .bg-red-50 {
+      background-color: #fef2f2;
+    }
+    
+    /* 互动阅读题型特定样式 */
+    .interactive-passage {
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 15px;
+      background-color: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .blank-select {
+      border-bottom: 2px solid #94a3b8;
+      padding: 0 5px;
+      margin: 0 2px;
+      min-width: 100px;
+      display: inline-block;
+      height: 30px;
+      vertical-align: middle;
+    }
+    
+    .sentence-option, .idea-option, .title-option {
+      margin-right: 10px;
+    }
+    
+    .option-label {
+      display: block;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .option-label:hover {
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    
+    .correct-highlight {
+      background-color: #bbf7d0;
+      border: 1px solid #34d399;
+    }
+    
+    .incorrect-highlight {
+      background-color: #fecaca;
+      border: 1px solid #f87171;
+    }
+    
+    /* 问题提示框 */
+    .question-prompt {
+      background-color: #dbeafe;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-weight: 500;
+      color: #1e40af;
+      border-left: 4px solid #3b82f6;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans">
   <!-- 登录界面 -->
@@ -113,7 +208,7 @@
       </div>
       
       <div class="mt-6 text-center">
-        <p class="text-gray-500 text-sm">提示：使用测验码 <span class="font-mono bg-gray-100 px-2 py-1 rounded">1314</span> 开始练习</p>
+        <p class="text-sm text-gray-500">如果没有测验码，请联系锋锋老师获取</p>
       </div>
     </div>
   </div>
@@ -210,13 +305,13 @@
               <p id="toast-message" class="text-gray-600 mt-2"></p>
               
               <!-- 显示正确答案 -->
-              <div id="correct-answers-container" class="mt-4 hidden">
-                <h4 class="font-medium text-gray-800 mb-2">正确答案:</h4>
+              <div id="correct-answers-container" class="mt-4">
+                <h4 class="font-medium text-gray-800 mb-2">答案详情:</h4>
                 <div id="correct-answers" class="text-gray-700 space-y-3"></div>
               </div>
               
               <!-- 显示正确率 -->
-              <div id="accuracy-container" class="mt-4 hidden">
+              <div id="accuracy-container" class="mt-4">
                 <div class="flex items-center">
                   <span class="text-gray-600 mr-2">正确率:</span>
                   <span id="toast-accuracy" class="font-bold text-primary text-xl"></span>
@@ -273,6 +368,12 @@
     let totalTimePerQuestion = 30; // 默认每题30秒
     // 自适应学习系统实例
     let adaptiveSystem = null;
+    
+    // 互动阅读题组相关变量
+    let isInteractiveSet = false; // 当前是否在互动阅读题组中
+    let interactiveSetTimer = null; // 互动阅读题组计时器
+    let interactiveSetTimeRemaining = 420; // 互动阅读题组总时间7分钟（420秒）
+    let completedSetCount = 0; // 已完成的互动阅读题组数量
     
     // DOM元素
     const exerciseContainer = document.getElementById('exercise-container');
@@ -538,6 +639,8 @@
       exercises = [];
       userAnswers = [];
       currentJsonFile = '';
+      isInteractiveSet = false;
+      completedSetCount = 0;
       
       // 隐藏倒计时
       timerContainer.classList.add('hidden');
@@ -593,13 +696,18 @@
       btn.addEventListener('click', () => {
         const file = btn.getAttribute('data-file');
         const type = btn.getAttribute('data-type');
+        
+        // 检查是否是互动阅读题组
+        isInteractiveSet = (type === 'interactive');
+        
         // 根据题型设置不同的倒计时
         if (type === 'filling') {
           totalTimePerQuestion = 20; // 填空题20秒/题
         } else if (type === 'read') {
           totalTimePerQuestion = 180; // 阅读完成题180秒/题
         } else {
-          totalTimePerQuestion = 300; // 互动阅读300秒/题
+          // 互动阅读题组使用单独计时器
+          interactiveSetTimeRemaining = 420; // 7分钟
         }
         currentJsonFile = file;
         
@@ -636,47 +744,8 @@
         }
         const allExercises = await response.json();
 
-        // 过滤掉已经做过的题目（使用全局answeredQuestions记录）
-        const newExercises = allExercises.filter(exercise => {
-          // 使用题目标题和内容生成唯一标识
-          const key = `${exercise.title || exercise.text || exercise.passage || 'unknown'}_${exercise.type || 'unknown'}`;
-          return !answeredQuestions[key];
-        });
-        
-        // 如果当前等级没有新题目，尝试加载其他等级题目
-        if (newExercises.length === 0) {
-          console.log(`等级 ${jsonFile} 没有新题目，尝试加载其他等级题目`);
-          const levels = ['basic', 'intermediate', 'advanced'];
-          const currentLevel = jsonFile.split('_').pop().split('.')[0];
-          
-          for (const level of levels) {
-            if (level !== currentLevel) {
-              const altFile = jsonFile.replace(`_${currentLevel}`, `_${level}`);
-              const altResponse = await fetch(altFile);
-              if (altResponse.ok) {
-                const altExercises = await altResponse.json();
-                const altNewExercises = altExercises.filter(exercise => {
-                  const key = `${exercise.title || exercise.text || exercise.passage || 'unknown'}_${exercise.type || 'unknown'}`;
-                  return !answeredQuestions[key];
-                });
-                
-                if (altNewExercises.length > 0) {
-                  exercises = altNewExercises;
-                  userAnswers = new Array(exercises.length).fill(null);
-                  currentExerciseIndex = 0;
-                  updateProgressDisplay();
-                  renderCurrentExercise();
-                  return;
-                }
-              }
-            }
-          }
-          
-          // 所有等级都没有新题目
-          throw new Error('该题型所有题目已完成');
-        }
-
-        exercises = newExercises;
+        // 不过滤题目，允许重复练习
+        exercises = allExercises;
         userAnswers = new Array(exercises.length).fill(null);
         
         // 更新进度显示
@@ -738,19 +807,72 @@
     function renderCurrentExercise() {
       if (exercises.length === 0) return;
       
-      // 停止之前的倒计时
-      stopTimer();
+      // 停止之前的倒计时（非互动阅读题组）
+      if (!isInteractiveSet) {
+        stopTimer();
+      }
       
       const exercise = exercises[currentExerciseIndex];
       
       // 清空容器
       exerciseContainer.innerHTML = '';
       
+      // 根据题型渲染不同的内容
+      switch (exercise.type) {
+        case "completeTheSentences":
+          renderCompleteTheSentences(exercise);
+          break;
+        case "completeThePassage":
+          renderCompleteThePassage(exercise);
+          break;
+        case "highlightTheAnswer":
+          renderHighlightTheAnswer(exercise);
+          break;
+        case "identifyTheIdea":
+          renderIdentifyTheIdea(exercise);
+          break;
+        case "titleThePassage":
+          renderTitleThePassage(exercise);
+          break;
+        default:
+          // 默认处理（可能是原来的填空题）
+          renderDefaultExercise(exercise);
+      }
+      
+      // 更新按钮状态
+      prevBtn.disabled = currentExerciseIndex === 0;
+      nextBtn.textContent = currentExerciseIndex === exercises.length - 1 ? '完成' : '下一题';
+      
+      // 更新进度显示
+      updateProgressDisplay();
+      
+      // 开始新的倒计时
+      if (isInteractiveSet) {
+        // 互动阅读题组：只在第一题启动计时器
+        if (currentExerciseIndex === 0) {
+          startInteractiveSetTimer();
+        }
+      } else {
+        // 普通题型：每题单独计时
+        startTimer();
+      }
+    }
+    
+    // 渲染默认题型（原来的填空题）
+    function renderDefaultExercise(exercise) {
       // 创建标题元素
       const titleElement = document.createElement('h2');
       titleElement.className = 'text-2xl font-bold text-dark mb-4 text-shadow fade-in';
       titleElement.textContent = exercise.title || `练习 ${currentExerciseIndex + 1}`;
       exerciseContainer.appendChild(titleElement);
+      
+      // 显示问题（如果有）
+      if (exercise.question) {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-prompt slide-up';
+        questionElement.textContent = exercise.question;
+        exerciseContainer.appendChild(questionElement);
+      }
       
       // 创建题目文本元素
       const textElement = document.createElement('div');
@@ -776,7 +898,7 @@
         // 互动阅读题型处理
         formattedText = exercise.passage;
         // 替换括号中的空白标记（如(1)__________）
-        formattedText = formattedText.replace(/\(\d+\)__________/g, (match, index) => {
+        formattedText = formattedText.replace(/\(\d+\)__________/g, (match) => {
           const blankIndex = parseInt(match.match(/\d+/)[0]) - 1;
           if (exercise.blanks && exercise.blanks[blankIndex]) {
             // 创建下拉选择框
@@ -796,13 +918,7 @@
       exerciseContainer.appendChild(textElement);
       
       // 创建提交按钮
-      const submitBtn = document.createElement('button');
-      submitBtn.id = 'submit-btn';
-      submitBtn.className = 'mt-6 px-8 py-3 bg-secondary text-white rounded-lg hover:bg-secondary/90 transition-colors transform hover:scale-105 active:scale-95 slide-up';
-      submitBtn.style.animationDelay = '0.2s';
-      submitBtn.textContent = '检查答案';
-      submitBtn.addEventListener('click', checkAnswer);
-      exerciseContainer.appendChild(submitBtn);
+      createSubmitButton();
       
       // 恢复用户之前的答案
       if (userAnswers[currentExerciseIndex]) {
@@ -813,16 +929,6 @@
           }
         });
       }
-      
-      // 更新按钮状态
-      prevBtn.disabled = currentExerciseIndex === 0;
-      nextBtn.textContent = currentExerciseIndex === exercises.length - 1 ? '完成' : '下一题';
-      
-      // 更新进度显示
-      updateProgressDisplay();
-      
-      // 开始新的倒计时
-      startTimer();
       
       // 自动聚焦第一个输入框
       const firstInput = document.querySelector('.blank-input, .blank-select');
@@ -837,7 +943,335 @@
         input.addEventListener('input', playLetterSound);
       });
     }
-
+    
+    // 渲染填空题
+    function renderCompleteTheSentences(exercise) {
+      // 创建标题元素
+      const titleElement = document.createElement('h2');
+      titleElement.className = 'text-2xl font-bold text-dark mb-4 text-shadow fade-in';
+      titleElement.textContent = exercise.title || "补全句子";
+      exerciseContainer.appendChild(titleElement);
+      
+      // 显示问题（如果有）
+      if (exercise.question) {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-prompt slide-up';
+        questionElement.textContent = exercise.question;
+        exerciseContainer.appendChild(questionElement);
+      }
+      
+      // 创建段落容器
+      const passageContainer = document.createElement('div');
+      passageContainer.className = 'interactive-passage slide-up';
+      
+      // 处理段落文本中的空格和答案占位符
+      let formattedText = exercise.passage;
+      // 替换括号中的空白标记（如(1)__________）
+      formattedText = formattedText.replace(/\(\d+\)__________/g, (match) => {
+        const blankIndex = parseInt(match.match(/\d+/)[0]) - 1;
+        if (exercise.blanks && exercise.blanks[blankIndex]) {
+          // 创建下拉选择框
+          const options = exercise.blanks[blankIndex].options.map(option => 
+            `<option value="${option}">${option}</option>`
+          ).join('');
+          return `<select class="blank-select">
+                    <option value="">选择答案</option>
+                    ${options}
+                  </select>`;
+        }
+        return match;
+      });
+      
+      passageContainer.innerHTML = formattedText;
+      exerciseContainer.appendChild(passageContainer);
+      
+      // 创建提交按钮
+      createSubmitButton();
+      
+      // 恢复用户之前的答案
+      if (userAnswers[currentExerciseIndex]) {
+        const selects = document.querySelectorAll('.blank-select');
+        selects.forEach((select, index) => {
+          if (userAnswers[currentExerciseIndex][index]) {
+            select.value = userAnswers[currentExerciseIndex][index];
+          }
+        });
+      }
+    }
+    
+    // 渲染句子选择题
+    function renderCompleteThePassage(exercise) {
+      // 创建标题元素
+      const titleElement = document.createElement('h2');
+      titleElement.className = 'text-2xl font-bold text-dark mb-4 text-shadow fade-in';
+      titleElement.textContent = exercise.title || "补全段落";
+      exerciseContainer.appendChild(titleElement);
+      
+      // 显示问题（如果有）
+      if (exercise.question) {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-prompt slide-up';
+        questionElement.textContent = exercise.question;
+        exerciseContainer.appendChild(questionElement);
+      }
+      
+      // 创建段落容器
+      const passageContainer = document.createElement('div');
+      passageContainer.className = 'interactive-passage slide-up';
+      
+      // 第一部分
+      const section1 = document.createElement('p');
+      section1.textContent = exercise.passage_section1;
+      passageContainer.appendChild(section1);
+      
+      // 添加分隔线
+      const separator = document.createElement('div');
+      separator.className = 'relative flex items-center py-4';
+      separator.innerHTML = `
+        <div class="flex-grow border-t border-gray-300"></div>
+        <span class="flex-shrink mx-4 text-gray-500 font-medium">选择正确的句子</span>
+        <div class="flex-grow border-t border-gray-300"></div>
+      `;
+      passageContainer.appendChild(separator);
+      
+      // 句子选择区域
+      const selectContainer = document.createElement('div');
+      selectContainer.className = 'space-y-2';
+      
+      exercise.missing_sentence_options.forEach((option) => {
+        const optionDiv = document.createElement('label');
+        optionDiv.className = 'option-label';
+        optionDiv.innerHTML = `
+          <input type="radio" name="sentence-option" value="${option}" class="sentence-option">
+          ${option}
+        `;
+        selectContainer.appendChild(optionDiv);
+      });
+      
+      passageContainer.appendChild(selectContainer);
+      
+      // 添加分隔线
+      const separator2 = document.createElement('div');
+      separator2.className = 'relative flex items-center py-4';
+      separator2.innerHTML = `
+        <div class="flex-grow border-t border-gray-300"></div>
+        <span class="flex-shrink mx-4 text-gray-500 font-medium">继续段落</span>
+        <div class="flex-grow border-t border-gray-300"></div>
+      `;
+      passageContainer.appendChild(separator2);
+      
+      // 第二部分
+      const section2 = document.createElement('p');
+      section2.textContent = exercise.passage_section2;
+      passageContainer.appendChild(section2);
+      
+      exerciseContainer.appendChild(passageContainer);
+      
+      // 创建提交按钮
+      createSubmitButton();
+      
+      // 恢复用户之前的答案
+      if (userAnswers[currentExerciseIndex]) {
+        const selectedValue = userAnswers[currentExerciseIndex][0];
+        if (selectedValue) {
+          const radio = document.querySelector(`input[value="${selectedValue}"]`);
+          if (radio) radio.checked = true;
+        }
+      }
+    }
+    
+    // 渲染高亮答案题
+    function renderHighlightTheAnswer(exercise) {
+      // 创建标题元素
+      const titleElement = document.createElement('h2');
+      titleElement.className = 'text-2xl font-bold text-dark mb-4 text-shadow fade-in';
+      titleElement.textContent = exercise.title || "高亮答案";
+      exerciseContainer.appendChild(titleElement);
+      
+      // 显示问题（如果有）
+      if (exercise.question) {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-prompt slide-up';
+        questionElement.textContent = exercise.question;
+        exerciseContainer.appendChild(questionElement);
+      }
+      
+      // 创建问题文本
+      const questionElement = document.createElement('div');
+      questionElement.className = 'bg-primary/10 p-4 rounded-lg mb-4 slide-up';
+      questionElement.innerHTML = `<strong class="text-primary">问题:</strong> ${exercise.question}`;
+      exerciseContainer.appendChild(questionElement);
+      
+      // 创建段落容器
+      const passageContainer = document.createElement('div');
+      passageContainer.className = 'interactive-passage slide-up';
+      passageContainer.innerHTML = exercise.passage;
+      
+      // 添加高亮功能
+      passageContainer.addEventListener('mouseup', () => {
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+        
+        // 清除之前的高亮
+        document.querySelectorAll('.highlight').forEach(el => {
+          el.outerHTML = el.innerHTML;
+        });
+        
+        // 创建新的高亮
+        const range = selection.getRangeAt(0);
+        const highlight = document.createElement('span');
+        highlight.className = 'highlight';
+        highlight.appendChild(range.extractContents());
+        range.insertNode(highlight);
+        
+        // 保存用户选择的文本
+        userAnswers[currentExerciseIndex] = [highlight.textContent];
+        
+        // 清除选择
+        selection.removeAllRanges();
+      });
+      
+      exerciseContainer.appendChild(passageContainer);
+      
+      // 创建提示文本
+      const hint = document.createElement('p');
+      hint.className = 'text-sm text-gray-500 mb-6 slide-up';
+      hint.textContent = "提示：在段落中选择答案文本，它会自动高亮显示";
+      exerciseContainer.appendChild(hint);
+      
+      // 创建提交按钮
+      createSubmitButton();
+      
+      // 恢复用户之前的高亮
+      if (userAnswers[currentExerciseIndex] && userAnswers[currentExerciseIndex][0]) {
+        const text = userAnswers[currentExerciseIndex][0];
+        if (passageContainer.textContent.includes(text)) {
+          const regex = new RegExp(text, 'g');
+          passageContainer.innerHTML = passageContainer.innerHTML.replace(
+            regex, 
+            `<span class="highlight">${text}</span>`
+          );
+        }
+      }
+    }
+    
+    // 渲染观点识别题
+    function renderIdentifyTheIdea(exercise) {
+      // 创建标题元素
+      const titleElement = document.createElement('h2');
+      titleElement.className = 'text-2xl font-bold text-dark mb-4 text-shadow fade-in';
+      titleElement.textContent = exercise.title || "识别主要观点";
+      exerciseContainer.appendChild(titleElement);
+      
+      // 显示问题（如果有）
+      if (exercise.question) {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-prompt slide-up';
+        questionElement.textContent = exercise.question;
+        exerciseContainer.appendChild(questionElement);
+      }
+      
+      // 创建段落容器（可选）
+      if (exercise.passage) {
+        const passageContainer = document.createElement('div');
+        passageContainer.className = 'interactive-passage mb-6 slide-up';
+        passageContainer.textContent = exercise.passage;
+        exerciseContainer.appendChild(passageContainer);
+      }
+      
+      // 创建选项容器
+      const optionsContainer = document.createElement('div');
+      optionsContainer.className = 'space-y-3 slide-up';
+      
+      exercise.ideas.forEach((idea) => {
+        const optionDiv = document.createElement('label');
+        optionDiv.className = 'option-label';
+        optionDiv.innerHTML = `
+          <input type="radio" name="idea-option" value="${idea}" class="idea-option">
+          ${idea}
+        `;
+        optionsContainer.appendChild(optionDiv);
+      });
+      
+      exerciseContainer.appendChild(optionsContainer);
+      
+      // 创建提交按钮
+      createSubmitButton();
+      
+      // 恢复用户之前的答案
+      if (userAnswers[currentExerciseIndex]) {
+        const selectedValue = userAnswers[currentExerciseIndex][0];
+        if (selectedValue) {
+          const radio = document.querySelector(`input[value="${selectedValue}"]`);
+          if (radio) radio.checked = true;
+        }
+      }
+    }
+    
+    // 渲染标题选择题
+    function renderTitleThePassage(exercise) {
+      // 创建标题元素
+      const titleElement = document.createElement('h2');
+      titleElement.className = 'text-2xl font-bold text-dark mb-4 text-shadow fade-in';
+      titleElement.textContent = exercise.title || "选择文章标题";
+      exerciseContainer.appendChild(titleElement);
+      
+      // 显示问题（如果有）
+      if (exercise.question) {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-prompt slide-up';
+        questionElement.textContent = exercise.question;
+        exerciseContainer.appendChild(questionElement);
+      }
+      
+      // 创建段落容器（可选）
+      if (exercise.passage) {
+        const passageContainer = document.createElement('div');
+        passageContainer.className = 'interactive-passage mb-6 slide-up';
+        passageContainer.textContent = exercise.passage;
+        exerciseContainer.appendChild(passageContainer);
+      }
+      
+      // 创建选项容器
+      const optionsContainer = document.createElement('div');
+      optionsContainer.className = 'space-y-3 slide-up';
+      
+      exercise.titles.forEach((title) => {
+        const optionDiv = document.createElement('label');
+        optionDiv.className = 'option-label';
+        optionDiv.innerHTML = `
+          <input type="radio" name="title-option" value="${title}" class="title-option">
+          ${title}
+        `;
+        optionsContainer.appendChild(optionDiv);
+      });
+      
+      exerciseContainer.appendChild(optionsContainer);
+      
+      // 创建提交按钮
+      createSubmitButton();
+      
+      // 恢复用户之前的答案
+      if (userAnswers[currentExerciseIndex]) {
+        const selectedValue = userAnswers[currentExerciseIndex][0];
+        if (selectedValue) {
+          const radio = document.querySelector(`input[value="${selectedValue}"]`);
+          if (radio) radio.checked = true;
+        }
+      }
+    }
+    
+    // 创建提交按钮 (公共函数)
+    function createSubmitButton() {
+      const submitBtn = document.createElement('button');
+      submitBtn.id = 'submit-btn';
+      submitBtn.className = 'mt-6 px-8 py-3 bg-secondary text-white rounded-lg hover:bg-secondary/90 transition-colors transform hover:scale-105 active:scale-95 slide-up';
+      submitBtn.style.animationDelay = '0.2s';
+      submitBtn.textContent = '检查答案';
+      submitBtn.addEventListener('click', checkAnswer);
+      exerciseContainer.appendChild(submitBtn);
+    }
+    
     // 设置输入框的自动跳转
     function setupInputNavigation() {
       const inputs = document.querySelectorAll('.blank-input');
@@ -876,6 +1310,24 @@
         }
       }, 1000);
     }
+    
+    // 开始互动阅读题组计时器
+    function startInteractiveSetTimer() {
+      timerContainer.classList.remove('hidden');
+      timeRemaining = interactiveSetTimeRemaining;
+      updateTimerDisplay();
+      
+      timer = setInterval(() => {
+        timeRemaining--;
+        interactiveSetTimeRemaining = timeRemaining;
+        updateTimerDisplay();
+        
+        if (timeRemaining <= 0) {
+          clearInterval(timer);
+          checkAnswer();
+        }
+      }, 1000);
+    }
 
     // 停止倒计时
     function stopTimer() {
@@ -889,8 +1341,10 @@
 
     // 更新倒计时显示
     function updateTimerDisplay() {
-      timerDisplay.textContent = `${Math.floor(timeRemaining / 60)}:${String(timeRemaining % 60).padStart(2, '0')}`;
-      timeProgress.style.width = `${(timeRemaining / totalTimePerQuestion) * 100}%`;
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = timeRemaining % 60;
+      timerDisplay.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
+      timeProgress.style.width = `${(timeRemaining / (isInteractiveSet ? 420 : totalTimePerQuestion)) * 100}%`;
       
       // 当剩余时间少于10秒时，改变颜色
       if (timeRemaining <= 10) {
@@ -908,34 +1362,70 @@
 
     // 检查答案
     function checkAnswer() {
-      const inputs = document.querySelectorAll('.blank-input, .blank-select');
-      const userInput = Array.from(inputs).map(input => input.value.toLowerCase());
-      let correctAnswers = [];
-      
-      // 根据题型获取正确答案
       const currentExercise = exercises[currentExerciseIndex];
-      if (currentExercise.answers) {
-        correctAnswers = currentExercise.answers.map(a => a.toLowerCase());
-      } else if (currentExercise.blanks) {
-        correctAnswers = currentExercise.blanks.map(b => b.correct.toLowerCase());
+      let userInput = [];
+      let correctAnswers = [];
+      let isCorrect = false;
+      
+      // 根据题型获取用户答案和正确答案
+      switch (currentExercise.type) {
+        case "completeTheSentences":
+          // 填空题型
+          const selects = document.querySelectorAll('.blank-select');
+          userInput = Array.from(selects).map(select => select.value.toLowerCase());
+          correctAnswers = currentExercise.blanks.map(b => b.correct.toLowerCase());
+          isCorrect = userInput.every((val, i) => val === correctAnswers[i]);
+          break;
+          
+        case "completeThePassage":
+          // 句子选择题
+          const selectedSentence = document.querySelector('input[name="sentence-option"]:checked');
+          userInput = selectedSentence ? [selectedSentence.value] : [""];
+          correctAnswers = [currentExercise.correct_sentence];
+          isCorrect = userInput[0] === correctAnswers[0];
+          break;
+          
+        case "highlightTheAnswer":
+          // 高亮答案题
+          const highlight = document.querySelector('.highlight');
+          userInput = highlight ? [highlight.textContent] : [""];
+          correctAnswers = [currentExercise.correct_answer_text];
+          isCorrect = userInput[0].trim() === correctAnswers[0].trim();
+          break;
+          
+        case "identifyTheIdea":
+          // 观点识别题
+          const selectedIdea = document.querySelector('input[name="idea-option"]:checked');
+          userInput = selectedIdea ? [selectedIdea.value] : [""];
+          correctAnswers = [currentExercise.correct_idea];
+          isCorrect = userInput[0] === correctAnswers[0];
+          break;
+          
+        case "titleThePassage":
+          // 标题选择题
+          const selectedTitle = document.querySelector('input[name="title-option"]:checked');
+          userInput = selectedTitle ? [selectedTitle.value] : [""];
+          correctAnswers = [currentExercise.correct_title];
+          isCorrect = userInput[0] === correctAnswers[0];
+          break;
+          
+        default:
+          // 默认填空题处理
+          const inputs = document.querySelectorAll('.blank-input, .blank-select');
+          userInput = Array.from(inputs).map(input => input.value.toLowerCase());
+          if (currentExercise.answers) {
+            correctAnswers = currentExercise.answers.map(a => a.toLowerCase());
+          } else if (currentExercise.blanks) {
+            correctAnswers = currentExercise.blanks.map(b => b.correct.toLowerCase());
+          }
+          isCorrect = userInput.every((val, i) => val === correctAnswers[i]);
       }
       
       // 保存用户答案
       userAnswers[currentExerciseIndex] = userInput;
       
-      // 检查答案是否正确
-      let isCorrect = true;
-      inputs.forEach((input, index) => {
-        const isInputCorrect = userInput[index] === correctAnswers[index];
-        input.classList.toggle('border-green-500', isInputCorrect);
-        input.classList.toggle('border-red-500', !isInputCorrect);
-        
-        // 如果不正确，显示正确答案
-        if (!isInputCorrect) {
-          isCorrect = false;
-          input.value = correctAnswers[index];
-        }
-      });
+      // 更新UI显示正确/错误状态
+      updateAnswerUI(isCorrect, userInput, correctAnswers);
       
       // 播放结果音效
       if (isCorrect) {
@@ -944,8 +1434,10 @@
         playWrongSound();
       }
       
-      // 停止倒计时
-      stopTimer();
+      // 停止倒计时（如果是普通题型）
+      if (!isInteractiveSet) {
+        stopTimer();
+      }
       
       // 禁用提交按钮
       const submitBtn = document.getElementById('submit-btn');
@@ -968,20 +1460,70 @@
         updateAbilityDisplay();
         const newLevel = adaptiveSystem.getCurrentLevel();
 
-        // 如果能力级别发生变化，重新加载对应难度的题目
-        if (prevLevel !== newLevel) {
+        // 如果能力级别发生变化且不是互动阅读题组，重新加载对应难度的题目
+        if (prevLevel !== newLevel && !isInteractiveSet) {
           const levelFile = adaptiveSystem.getLevelFile(currentJsonFile);
           loadExercises(levelFile);
         }
       }
       
-      // 记录已做题目
-      const questionKey = `${currentExercise.title || currentExercise.text || currentExercise.passage || 'unknown'}_${currentExercise.type || 'unknown'}`;
-      answeredQuestions[questionKey] = true;
-      localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
-      
       // 显示结果提示
       showResultToast(isCorrect, userInput, correctAnswers);
+    }
+    
+    // 更新答案UI状态
+    function updateAnswerUI(isCorrect, userInput, correctAnswers) {
+      const currentExercise = exercises[currentExerciseIndex];
+      
+      // 根据题型更新UI
+      switch (currentExercise.type) {
+        case "completeTheSentences":
+          // 填空题型：标记正确/错误
+          const selects = document.querySelectorAll('.blank-select');
+          selects.forEach((select, index) => {
+            select.classList.toggle('border-green-500', userInput[index] === correctAnswers[index]);
+            select.classList.toggle('border-red-500', userInput[index] !== correctAnswers[index]);
+            
+            // 如果不正确，显示正确答案
+            if (userInput[index] !== correctAnswers[index]) {
+              select.value = correctAnswers[index];
+            }
+          });
+          break;
+          
+        case "completeThePassage":
+        case "identifyTheIdea":
+        case "titleThePassage":
+          // 选择题型：标记正确/错误
+          const options = document.querySelectorAll('input[type="radio"]');
+          options.forEach(option => {
+            const label = option.parentElement;
+            if (option.value === correctAnswers[0]) {
+              label.classList.add('border-green-500', 'bg-green-50');
+            } else if (option.checked && option.value !== correctAnswers[0]) {
+              label.classList.add('border-red-500', 'bg-red-50');
+            }
+          });
+          break;
+          
+        case "highlightTheAnswer":
+          // 高亮题型：检查高亮是否正确
+          const highlight = document.querySelector('.highlight');
+          if (highlight) {
+            if (isCorrect) {
+              highlight.classList.add('highlight-correct');
+            } else {
+              highlight.classList.add('highlight-incorrect');
+              
+              // 创建正确高亮
+              const correctHighlight = document.createElement('div');
+              correctHighlight.className = 'mt-4 p-3 bg-green-100 text-green-800 rounded-lg';
+              correctHighlight.innerHTML = `<strong>正确答案:</strong> ${correctAnswers[0]}`;
+              exerciseContainer.appendChild(correctHighlight);
+            }
+          }
+          break;
+      }
     }
 
     // 显示结果提示
@@ -1007,58 +1549,103 @@
       }
       
       // 显示正确答案
-      correctAnswersContainer.classList.remove('hidden');
       correctAnswersElement.innerHTML = '';
       
-      // 生成正确的完整句子
-      let correctSentence = '';
-      if (exercises[currentExerciseIndex].text) {
-        // 填空题类型
-        const words = exercises[currentExerciseIndex].text.split(' ');
-        let answerIndex = 0;
-        
-        correctSentence = words.map(word => {
-          if (word.includes('[BLANK]')) {
-            const blankCount = (word.match(/\[BLANK\]/g) || []).length;
-            const blanks = [];
-            for (let i = 0; i < blankCount; i++) {
-              const isCorrect = userAnswers[answerIndex] === correctAnswers[answerIndex];
-              const answerText = correctAnswers[answerIndex];
-              blanks.push(`<span class="font-medium ${isCorrect ? 'text-green-600' : 'text-red-600'}">${answerText}</span>`);
-              answerIndex++;
-            }
-            return word.replace(/\[BLANK\]/g, () => blanks.shift());
-          }
-          return word;
-        }).join(' ');
-      } else if (exercises[currentExerciseIndex].passage) {
-        // 互动阅读类型
-        correctSentence = exercises[currentExerciseIndex].passage;
-        
-        // 替换括号中的空白标记（如(1)__________）
-        let blankIndex = 0;
-        correctSentence = correctSentence.replace(/\(\d+\)__________/g, (match) => {
-          const isCorrect = userAnswers[blankIndex] === correctAnswers[blankIndex];
-          const answerText = correctAnswers[blankIndex];
-          blankIndex++;
-          return `<span class="font-medium ${isCorrect ? 'text-green-600' : 'text-red-600'}">${answerText}</span>`;
-        });
+      const currentExercise = exercises[currentExerciseIndex];
+      let answerHtml = '';
+      
+      // 根据题型生成答案详情
+      switch (currentExercise.type) {
+        case "completeTheSentences":
+          // 填空题：显示完整句子并标记答案
+          let passageWithAnswers = currentExercise.passage;
+          let blankIndex = 0;
+          
+          passageWithAnswers = passageWithAnswers.replace(/\(\d+\)__________/g, () => {
+            const userAnswer = userAnswers[blankIndex];
+            const correctAnswer = correctAnswers[blankIndex];
+            const isAnswerCorrect = userAnswer === correctAnswer;
+            
+            blankIndex++;
+            return `<span class="${isAnswerCorrect ? 'text-green-600 font-bold' : 'text-red-600'}">${correctAnswer}</span>`;
+          });
+          
+          answerHtml = `
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <p class="text-lg mb-2">完整句子：</p>
+              <div class="text-gray-700 leading-relaxed">${passageWithAnswers}</div>
+            </div>
+          `;
+          break;
+          
+        case "completeThePassage":
+          // 句子选择题：显示正确答案
+          answerHtml = `
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <p class="text-lg mb-2">正确选项：</p>
+              <div class="text-green-600 font-bold">${correctAnswers[0]}</div>
+            </div>
+          `;
+          break;
+          
+        case "highlightTheAnswer":
+          // 高亮题：显示正确答案
+          answerHtml = `
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <p class="text-lg mb-2">正确答案：</p>
+              <div class="text-green-600 font-bold">${correctAnswers[0]}</div>
+            </div>
+          `;
+          break;
+          
+        case "identifyTheIdea":
+        case "titleThePassage":
+          // 观点识别和标题选择：显示正确答案
+          answerHtml = `
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <p class="text-lg mb-2">正确答案：</p>
+              <div class="text-green-600 font-bold">${correctAnswers[0]}</div>
+            </div>
+          `;
+          break;
+          
+        default:
+          // 默认填空题处理
+          let textWithAnswers = currentExercise.text;
+          let inputIndex = 0;
+          
+          textWithAnswers = textWithAnswers.replace(/\[BLANK\]/g, () => {
+            const userAnswer = userAnswers[inputIndex];
+            const correctAnswer = correctAnswers[inputIndex];
+            const isAnswerCorrect = userAnswer === correctAnswer;
+            
+            inputIndex++;
+            return `<span class="${isAnswerCorrect ? 'text-green-600 font-bold' : 'text-red-600'}">${correctAnswer}</span>`;
+          });
+          
+          answerHtml = `
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <p class="text-lg mb-2">完整句子：</p>
+              <div class="text-gray-700 leading-relaxed">${textWithAnswers}</div>
+            </div>
+          `;
       }
       
-      // 创建正确句子元素
-      const sentenceElement = document.createElement('div');
-      sentenceElement.className = 'p-4 bg-gray-50 rounded-lg border border-gray-200';
-      sentenceElement.innerHTML = correctSentence;
-      correctAnswersElement.appendChild(sentenceElement);
+      correctAnswersElement.innerHTML = answerHtml;
       
       // 计算并显示正确率
-      accuracyContainer.classList.remove('hidden');
+      let correctCount = 0;
+      if (Array.isArray(userAnswers)) {
+        correctCount = userAnswers.reduce((count, answer, index) => {
+          return answer === correctAnswers[index] ? count + 1 : count;
+        }, 0);
+      } else {
+        // 对于选择题，只有一个答案
+        correctCount = userAnswers[0] === correctAnswers[0] ? 1 : 0;
+      }
       
-      const correctCount = userAnswers.reduce((count, answer, index) => {
-        return answer === correctAnswers[index] ? count + 1 : count;
-      }, 0);
-      
-      const accuracy = Math.round((correctCount / correctAnswers.length) * 100);
+      const totalQuestions = Array.isArray(correctAnswers) ? correctAnswers.length : 1;
+      const accuracy = Math.round((correctCount / totalQuestions) * 100);
       toastAccuracy.textContent = `${accuracy}%`;
     }
 
@@ -1084,7 +1671,7 @@
 
     // 下一题按钮点击事件
     nextBtn.addEventListener('click', () => {
-      // 关键修改：在切换到下一题前隐藏结果提示
+      // 在切换到下一题前隐藏结果提示
       hideResultToast();
       
       if (currentExerciseIndex < exercises.length - 1) {
@@ -1092,22 +1679,63 @@
         renderCurrentExercise();
       } else {
         // 完成练习
-        exerciseContainer.innerHTML = `
+        let completionMessage = `
           <div class="text-center py-12 fade-in">
             <i class="fa fa-trophy text-accent text-5xl mb-4"></i>
             <h2 class="text-2xl font-bold text-dark mb-4">练习完成！</h2>
             <p class="text-gray-600 mb-6">恭喜你完成了所有练习题目</p>
-            <div class="bg-primary/10 p-4 rounded-lg">
-              <p class="text-primary font-medium mb-2">最终能力值</p>
-              <p class="text-3xl font-bold">${Math.round(adaptiveSystem.ability)} (${adaptiveSystem.getCurrentLevel()})</p>
-            </div>
-            <button id="restart-btn" class="mt-8 px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
-              返回首页
-            </button>
-          </div>
         `;
         
+        // 如果是互动阅读题组，增加完成计数
+        if (isInteractiveSet) {
+          completedSetCount++;
+          completionMessage += `
+            <p class="text-gray-600 mb-6">你已完成 <span class="font-bold">${completedSetCount}</span> 套互动阅读题</p>
+          `;
+          
+          // 互动阅读题组完成后才进行等级评估
+          const prevLevel = adaptiveSystem.getCurrentLevel();
+          const levelFile = adaptiveSystem.getLevelFile(currentJsonFile);
+          const newLevel = adaptiveSystem.getCurrentLevel();
+          
+          if (prevLevel !== newLevel) {
+            completionMessage += `
+              <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 mb-6">
+                <p class="text-yellow-700 font-medium">检测到能力变化：${prevLevel} → ${newLevel}</p>
+                <p class="text-yellow-600">系统将自动加载${newLevel}难度的题目</p>
+              </div>
+            `;
+          }
+        }
+        
+        completionMessage += `
+          <div class="bg-primary/10 p-4 rounded-lg">
+            <p class="text-primary font-medium mb-2">最终能力值</p>
+            <p class="text-3xl font-bold">${Math.round(adaptiveSystem.ability)} (${adaptiveSystem.getCurrentLevel()})</p>
+          </div>
+          <button id="restart-btn" class="mt-8 px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+            返回首页
+          </button>
+        </div>
+        `;
+        
+        exerciseContainer.innerHTML = completionMessage;
+        
         document.getElementById('restart-btn').addEventListener('click', goHome);
+        
+        // 互动阅读题组完成后才加载新题目
+        if (isInteractiveSet && adaptiveSystem) {
+          const prevLevel = adaptiveSystem.getCurrentLevel();
+          const levelFile = adaptiveSystem.getLevelFile(currentJsonFile);
+          const newLevel = adaptiveSystem.getCurrentLevel();
+          
+          if (prevLevel !== newLevel) {
+            // 延迟加载新题目
+            setTimeout(() => {
+              loadExercises(levelFile);
+            }, 3000);
+          }
+        }
       }
     });
   </script>

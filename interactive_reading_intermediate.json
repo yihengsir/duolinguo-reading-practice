@@ -1,65 +1,191 @@
 [
   {
-    "id": "ir-q1",
+    "id": "ir-q10-1",
     "type": "completeTheSentences",
-    "passage": "Transportation systems have been (1)__________ linked to natural resources, especially oil, for the past hundred (2)__________ . The oil (3)__________ has (4)__________ a major profit maker for many (5)__________ and countries.",
+    "passage": "As soon as Bev (1)__________ how much she (2)__________ animals, she took a (3)__________ at a pet store. She (4)__________ out working with fish and reptiles before she (5)__________ to the bird department.",
     "blanks": [
-      {"id": "blank1", "options": ["sometimes", "the", "only", "not", "closely"], "correct": "closely"},
-      {"id": "blank2", "options": ["years", "minutes", "decade", "miles", "hours"], "correct": "years"},
-      {"id": "blank3", "options": ["place", "industry", "façade", "organizations", "companies"], "correct": "industry"},
-      {"id": "blank4", "options": ["introduced", "formed", "been", "created", "established"], "correct": "been"},
-      {"id": "blank5", "options": ["energies", "sources", "nations", "people", "corporations"], "correct": "corporations"}
+      {"id": "blank1", "options": ["changed", "realized", "was", "and", "announced"], "correct": "realized"},
+      {"id": "blank2", "options": ["loved", "interested", "attracted", "disliked"], "correct": "loved"},
+      {"id": "blank3", "options": ["class", "seat", "job", "test", "gig"], "correct": "job"},
+      {"id": "blank4", "options": ["started", "her", "kept", "set", "is"], "correct": "started"},
+      {"id": "blank5", "options": ["goes", "go", "relocated", "jumped", "moved"], "correct": "moved"}
     ]
   },
   {
-    "id": "ir-q2",
+    "id": "ir-q10-2",
     "type": "completeThePassage",
-    "passage_section1": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries.",
-    "passage_section2": "Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "passage_section1": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department.",
+    "passage_section2": "She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
     "missing_sentence_options": [
-      "The spill contaminated fish, birds, and shellfish and unfinished marine life for generations to come.",
-      "However, there are significant environmental problems and potential security risks due to the widespread use of oil.",
-      "Environmental impact assessments (EIAs) are only intended to maximize benefits of development while minimizing possible ecological damage.",
-      "Ineffective energy policies and diminishing natural resources have led the country to begin tapping into their coal reserves."
+      "She loved birds so much that she ended up buying a bird from the store.",
+      "But when she visited a pet store to look around, she found a Labrador retriever puppy.",
+      "Bev was able to go with her grandmother, who was more than happy to take care of her.",
+      "One day she saw a sheep near the barn and realized that she loved animals."
     ],
-    "correct_sentence": "However, there are significant environmental problems and potential security risks due to the widespread use of oil."
+    "correct_sentence": "She loved birds so much that she ended up buying a bird from the store."
   },
   {
-    "id": "ir-q3",
+    "id": "ir-q10-3",
     "type": "highlightTheAnswer",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
-    "question": "What are some examples of alternatives to oil?",
-    "correct_answer_text": "renewable (solar, wind) and nonrenewable (nuclear) sources of energy"
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
+    "question": "How did Bev feel about her bird?",
+    "correct_answer_text": "She loved her bird"
   },
   {
-    "id": "ir-q4",
+    "id": "ir-q10-4",
     "type": "highlightTheAnswer",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
-    "question": "What will businesses begin to do as awareness of issues around oil grows?",
-    "correct_answer_text": "incorporate alternative energy sources into their supply chain management plans"
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
+    "question": "What did Bev start out working with at the pet store?",
+    "correct_answer_text": "fish and reptiles"
   },
   {
-    "id": "ir-q5",
+    "id": "ir-q10-5",
     "type": "identifyTheIdea",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
     "ideas": [
-      "Current uses of alternative energy include solar power, biomass power, geothermal power, and hydropower as well as wind, and ocean currents.",
-      "In 1940, petroleum use decreased significantly to meet military needs for gasoline for aircraft and other types of mobility.",
-      "Fossil fuels are used to generate electricity, because mechanical devices are made to run off electricity instead of steam or water.",
-      "Oil has been a major source of profit for many corporations and countries, but there are environmental issues and security risks."
+      "Bev has been working with animals her whole life.",
+      "Bev was a child when she first visited a pet store.",
+      "Bev loved animals so much that she took a job at a pet store.",
+      "Bev was an animal lover and wanted to be a veterinarian when she grew up."
     ],
-    "correct_idea": "Oil has been a major source of profit for many corporations and countries, but there are environmental issues and security risks."
+    "correct_idea": "Bev loved animals so much that she took a job at a pet store."
   },
   {
-    "id": "ir-q6",
+    "id": "ir-q10-6",
     "type": "titleThePassage",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
     "titles": [
-      "Alternative Energy Sources",
-      "Managing an Oil Spill",
-      "The Rise of the Oil Industry",
-      "Becoming a Firefighter: Skills and Responsibilities"
+      "Bev’s Pet Store",
+      "Bev’s Pet Bird",
+      "A Job at the Zoo",
+      "Caring for a Bird"
     ],
-    "correct_title": "Alternative Energy Sources"
+    "correct_title": "Bev’s Pet Bird"
+  },
+  {
+    "id": "ir-q11-1",
+    "type": "completeTheSentences",
+    "passage": "Mariza had been a good student at school and had planned to (1)__________ further. She had always (2)__________ to go to college. She was 34 now, and (3)__________ a successful career (4)__________ a fashion designer, but she had never had the (5)__________ to go.",
+    "blanks": [
+      {"id": "blank1", "options": ["study", "work", "go", "pursue", "try"], "correct": "study"},
+      {"id": "blank2", "options": ["waited", "wanted", "thought", "started", "considered"], "correct": "wanted"},
+      {"id": "blank3", "options": ["followed", "took", "ran", "had", "with"], "correct": "had"},
+      {"id": "blank4", "options": ["in", "of", "for", "as", "by"], "correct": "as"},
+      {"id": "blank5", "options": ["chance", "luck", "company", "success", "part"], "correct": "chance"}
+    ]
+  },
+  {
+    "id": "ir-q11-2",
+    "type": "completeThePassage",
+    "passage_section1": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go.",
+    "passage_section2": "She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "missing_sentence_options": [
+      "She decided that she might as well do the course abroad.",
+      "Now she finally had the time in her life to go to college.",
+      "After she graduated, Mariza went back to Brazil for the summer.",
+      "When Mariza was 18 she decided she wanted to go away to college."
+    ],
+    "correct_sentence": "Now she finally had the time in her life to go to college."
+  },
+  {
+    "id": "ir-q11-3",
+    "type": "highlightTheAnswer",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "question": "Why had Mariza not been able to go to college before?",
+    "correct_answer_text": "she had never had the chance to go"
+  },
+  {
+    "id": "ir-q11-4",
+    "type": "highlightTheAnswer",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "question": "What did Mariza do after she received her acceptance letter?",
+    "correct_answer_text": "She spent several months deciding which classes she would take"
+  },
+  {
+    "id": "ir-q11-5",
+    "type": "identifyTheIdea",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "ideas": [
+      "Mariza felt inferior to the other girls her age and she didn’t feel like she was worth anything.",
+      "Mariza decided to study English at the university, but she didn’t know how to take the SAT test.",
+      "Mariza was worried about being able to survive the semester at this small college.",
+      "Mariza had always wanted to go to college and was thrilled when she received her acceptance letter."
+    ],
+    "correct_idea": "Mariza had always wanted to go to college and was thrilled when she received her acceptance letter."
+  },
+  {
+    "id": "ir-q11-6",
+    "type": "titleThePassage",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "titles": [
+      "Mariza’s Hardest Class",
+      "Mariza’s Admissions Counselor",
+      "Mariza Goes to College",
+      "Mariza’s English Test"
+    ],
+    "correct_title": "Mariza Goes to College"
+  },
+  {
+    "id": "ir-q12-1",
+    "type": "completeTheSentences",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been (1)__________ used in the business (2)__________ , but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, (3)__________ are using inexpensive battery operated UAVs to deliver packages. UAVs have also been (4)__________ to deliver aid in emergency (5)__________ and to collect environmental data.",
+    "blanks": [
+      {"id": "blank1", "options": ["widely", "further", "heard", "to", "recently"], "correct": "widely"},
+      {"id": "blank2", "options": ["quarter", "world", "years", "fields", "expansion"], "correct": "world"},
+      {"id": "blank3", "options": ["students", "celebrities", "companies", "citizens", "public"], "correct": "companies"},
+      {"id": "blank4", "options": ["made", "implemented", "hired", "proven", "used"], "correct": "used"},
+      {"id": "blank5", "options": ["order", "category", "situations", "work", "units"], "correct": "situations"}
+    ]
+  },
+  {
+    "id": "ir-q12-2",
+    "type": "completeThePassage",
+    "passage_section1": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data.",
+    "passage_section2": "There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "missing_sentence_options": [
+      "They may also be used to perform data collection or to survey forested areas for signs of fires.",
+      "Drone technologies have been available, but their potential applications have not been well understood.",
+      "These vehicles are used to inspect buildings that are too dangerous for human hands.",
+      "Avionics refers to the science and technology of air, space, and ground vehicles."
+    ],
+    "correct_sentence": "They may also be used to perform data collection or to survey forested areas for signs of fires."
+  },
+  {
+    "id": "ir-q12-3",
+    "type": "highlightTheAnswer",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "question": "How often are unmanned aerial vehicles used today?",
+    "correct_answer_text": "have not yet been widely used"
+  },
+  {
+    "id": "ir-q12-4",
+    "type": "highlightTheAnswer",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "question": "What does a business that specializes in UAVs do?",
+    "correct_answer_text": "sell the equipment and provide instruction for its safe use"
+  },
+  {
+    "id": "ir-q12-5",
+    "type": "identifyTheIdea",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "ideas": [
+      "Commercial drones are likely to become the next big tech investment, with many firms racing to be the primary provider.",
+      "UAVs are unmanned vehicles that can be used for applications such as delivering packages or collecting data.",
+      "Computer models can also be used to help robots plan surgeries and deliver packages while avoiding obstacles.",
+      "UAVs are currently being evaluated and reviewed for potential regulation in order to avoid and punish misuse."
+    ],
+    "correct_idea": "UAVs are unmanned vehicles that can be used for applications such as delivering packages or collecting data."
+  },
+  {
+    "id": "ir-q12-6",
+    "type": "titleThePassage",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "titles": [
+      "The Commercial History of the Airplane",
+      "Experiments in Aerodynamics and Flight",
+      "Investments in Drone Technology",
+      "The Business Use of Unmanned Aerial Vehicles"
+    ],
+    "correct_title": "The Business Use of Unmanned Aerial Vehicles"
   }
 ]

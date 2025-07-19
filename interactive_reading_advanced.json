@@ -1,65 +1,69 @@
 [
   {
-    "id": "ir-q1",
+    "id": "ir-q40-1",
     "type": "completeTheSentences",
-    "passage": "Transportation systems have been (1)__________ linked to natural resources, especially oil, for the past hundred (2)__________ . The oil (3)__________ has (4)__________ a major profit maker for many (5)__________ and countries.",
+    "passage": "In a surprise announcement, city officials confirmed that the upcoming 1)__________ festival, a renowned cultural event in the city for over two decades, will be moving to a virtual 2)__________ . This decision comes in response to recent 3)__________ concerns and the ongoing global pandemic. Organizers assure attendees that the online version will still capture the essence of the event, with live music 4)__________ , interactive workshops, and virtual 5)__________ of local artisans’ work.",
     "blanks": [
-      {"id": "blank1", "options": ["sometimes", "the", "only", "not", "closely"], "correct": "closely"},
-      {"id": "blank2", "options": ["years", "minutes", "decade", "miles", "hours"], "correct": "years"},
-      {"id": "blank3", "options": ["place", "industry", "façade", "organizations", "companies"], "correct": "industry"},
-      {"id": "blank4", "options": ["introduced", "formed", "been", "created", "established"], "correct": "been"},
-      {"id": "blank5", "options": ["energies", "sources", "nations", "people", "corporations"], "correct": "corporations"}
-    ]
+      {"id": "blank1", "options": ["culinary", "tech", "art", "sport"], "correct": "art"},
+      {"id": "blank2", "options": ["stadium", "platform", "booklet", "gathering"], "correct": "platform"},
+      {"id": "blank3", "options": ["welfare", "health", "safety", "global"], "correct": "health"},
+      {"id": "blank4", "options": ["performances", "launches", "auctions", "debates"], "correct": "performances"},
+      {"id": "blank5", "options": ["presentation", "tastings", "sales", "interviews"], "correct": "sales"}
+    ],
+    "question": "Select the best option for each missing word in the passage."
   },
   {
-    "id": "ir-q2",
+    "id": "ir-q40-2",
     "type": "completeThePassage",
-    "passage_section1": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries.",
-    "passage_section2": "Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "passage_section1": "In a surprise announcement, city officials confirmed that the upcoming art festival, a renowned cultural event in the city for over two decades, will be moving to a virtual platform. This decision comes in response to recent health concerns and the ongoing global pandemic. Organizers assure attendees that the online version will still capture the essence of the event, with live music performances, interactive workshops, and virtual sales of local artisans’ work.",
+    "passage_section2": "Local businesses are also gearing up to support the event, offering special promotions for festival attendees. They hope this collaborative approach will help invigorate the local economy during these trying times.",
     "missing_sentence_options": [
-      "The spill contaminated fish, birds, and shellfish and unfinished marine life for generations to come.",
-      "However, there are significant environmental problems and potential security risks due to the widespread use of oil.",
-      "Environmental impact assessments (EIAs) are only intended to maximize benefits of development while minimizing possible ecological damage.",
-      "Ineffective energy policies and diminishing natural resources have led the country to begin tapping into their coal reserves."
+      "Several prominent artists have expressed their disappointment in the change of format.",
+      "Attendance for the physical event was expected to surpass previous records.",
+      "Art enthusiasts from all over the world can now participate without travel constraints.",
+      "The city’s main park will be closed to allow for virtual event preparations."
     ],
-    "correct_sentence": "However, there are significant environmental problems and potential security risks due to the widespread use of oil."
+    "correct_sentence": "Art enthusiasts from all over the world can now participate without travel constraints.",
+    "question": "Select the best sentence to fill in the blank between the two paragraphs."
   },
   {
-    "id": "ir-q3",
+    "id": "ir-q40-3",
     "type": "highlightTheAnswer",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
-    "question": "What are some examples of alternatives to oil?",
-    "correct_answer_text": "renewable (solar, wind) and nonrenewable (nuclear) sources of energy"
+    "passage": "In a surprise announcement, city officials confirmed that the upcoming art festival, a renowned cultural event in the city for over two decades, will be moving to a virtual platform. This decision comes in response to recent health concerns and the ongoing global pandemic. Organizers assure attendees that the online version will still capture the essence of the event, with live music performances, interactive workshops, and virtual sales of local artisans’ work. Art enthusiasts from all over the world can now participate without travel constraints. Local businesses are also gearing up to support the event, offering special promotions for festival attendees. They hope this collaborative approach will help invigorate the local economy during these trying times.",
+    "question": "What are local businesses doing in response to the virtual festival?",
+    "correct_answer_text": "offering special promotions for festival attendees"
   },
   {
-    "id": "ir-q4",
+    "id": "ir-q40-4",
     "type": "highlightTheAnswer",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
-    "question": "What will businesses begin to do as awareness of issues around oil grows?",
-    "correct_answer_text": "incorporate alternative energy sources into their supply chain management plans"
+    "passage": "In a surprise announcement, city officials confirmed that the upcoming art festival, a renowned cultural event in the city for over two decades, will be moving to a virtual platform. This decision comes in response to recent health concerns and the ongoing global pandemic. Organizers assure attendees that the online version will still capture the essence of the event, with live music performances, interactive workshops, and virtual sales of local artisans’ work. Art enthusiasts from all over the world can now participate without travel constraints. Local businesses are also gearing up to support the event, offering special promotions for festival attendees. They hope this collaborative approach will help invigorate the local economy during these trying times.",
+    "question": "Why did the officials decide to move the art festival to a virtual platform?",
+    "correct_answer_text": "in response to recent health concerns and the ongoing global pandemic"
   },
   {
-    "id": "ir-q5",
+    "id": "ir-q40-5",
     "type": "identifyTheIdea",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "passage": "In a surprise announcement, city officials confirmed that the upcoming art festival, a renowned cultural event in the city for over two decades, will be moving to a virtual platform. This decision comes in response to recent health concerns and the ongoing global pandemic. Organizers assure attendees that the online version will still capture the essence of the event, with live music performances, interactive workshops, and virtual sales of local artisans’ work. Art enthusiasts from all over the world can now participate without travel constraints. Local businesses are also gearing up to support the event, offering special promotions for festival attendees. They hope this collaborative approach will help invigorate the local economy during these trying times.",
     "ideas": [
-      "Current uses of alternative energy include solar power, biomass power, geothermal power, and hydropower as well as wind, and ocean currents.",
-      "In 1940, petroleum use decreased significantly to meet military needs for gasoline for aircraft and other types of mobility.",
-      "Fossil fuels are used to generate electricity, because mechanical devices are made to run off electricity instead of steam or water.",
-      "Oil has been a major source of profit for many corporations and countries, but there are environmental issues and security risks."
+      "The history and evolution of art festivals in the city.",
+      "The move to a virtual format for a traditional art festival due to health concerns.",
+      "The role of local businesses in supporting international art exhibitions.",
+      "The impact of music performances on virtual event success."
     ],
-    "correct_idea": "Oil has been a major source of profit for many corporations and countries, but there are environmental issues and security risks."
+    "correct_idea": "The move to a virtual format for a traditional art festival due to health concerns.",
+    "question": "Select the idea that is expressed in the passage."
   },
   {
-    "id": "ir-q6",
+    "id": "ir-q40-6",
     "type": "titleThePassage",
-    "passage": "Transportation systems have been closely linked to natural resources, especially oil, for the past hundred years. The oil industry has been a major profit maker for many corporations and countries. However, there are significant environmental problems and potential security risks due to the widespread use of oil. Alternatives to oil sources can be found in both renewable (solar, wind) and nonrenewable (nuclear) sources of energy. Equally as important as alternative sources are conservation and fuel efficiency. As awareness about these issues grows, businesses will begin to incorporate alternative energy sources into their supply chain management plans. We are in the midst of a global energy revolution, and the key question is whether alternative energy sources can help meet our growing demand for energy.",
+    "passage": "In a surprise announcement, city officials confirmed that the upcoming art festival, a renowned cultural event in the city for over two decades, will be moving to a virtual platform. This decision comes in response to recent health concerns and the ongoing global pandemic. Organizers assure attendees that the online version will still capture the essence of the event, with live music performances, interactive workshops, and virtual sales of local artisans’ work. Art enthusiasts from all over the world can now participate without travel constraints. Local businesses are also gearing up to support the event, offering special promotions for festival attendees. They hope this collaborative approach will help invigorate the local economy during these trying times.",
     "titles": [
-      "Alternative Energy Sources",
-      "Managing an Oil Spill",
-      "The Rise of the Oil Industry",
-      "Becoming a Firefighter: Skills and Responsibilities"
+      "Art in the Age of Pandemics: The Festival’s Digital Transition",
+      "Local Businesses Rally Behind City’s Art Festival",
+      "Two Decades of Art: The Festival’s Historic Impact",
+      "A New Dawn: Music and Workshops Take the Digital Stage"
     ],
-    "correct_title": "Alternative Energy Sources"
+    "correct_title": "Art in the Age of Pandemics: The Festival’s Digital Transition",
+    "question": "Select the best title of the passage."
   }
 ]

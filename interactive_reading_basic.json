@@ -61,5 +61,133 @@
       "Becoming a Firefighter: Skills and Responsibilities"
     ],
     "correct_title": "Alternative Energy Sources"
+  },
+  {
+    "id": "ir-q2-1",
+    "type": "completeTheSentences",
+    "passage": "The human brain is one of the most (1)__________ organs in the body, weighing about 1.4 kilograms on average. It controls (2)__________ functions like heartbeat, digestion, and (3)__________ regulation, along with cognitive functions such as thought, memory, and emotion. Structurally, the brain is divided into different (4)__________ , each responsible for specific tasks. The cerebral cortex, for (5)__________ is responsible for (6)__________ , problem-solving, and other higher-order (7)__________ .",
+    "blanks": [
+      {"id": "blank1", "options": ["tiny", "complex", "transparent", "hollow"], "correct": "complex"},
+      {"id": "blank2", "options": ["voluntary", "simple", "automatic", "dormant"], "correct": "automatic"},
+      {"id": "blank3", "options": ["banking", "strict", "normal", "temperature"], "correct": "temperature"},
+      {"id": "blank4", "options": ["cells", "bones", "chambers", "regions"], "correct": "regions"},
+      {"id": "blank5", "options": ["ward", "instance", "occasion", "sample"], "correct": "instance"},
+      {"id": "blank6", "options": ["digestion", "circulation", "reasoning", "filtering"], "correct": "reasoning"},
+      {"id": "blank7", "options": ["things", "functions", "actions", "perform"], "correct": "functions"}
+    ]
+  },
+  {
+    "id": "ir-q2-2",
+    "type": "completeThePassage",
+    "passage_section1": "The human brain is one of the most complex organs in the body, weighing about 1.4 kilograms on average. It controls automatic functions like heartbeat, digestion, and temperature regulation, along with cognitive functions such as thought, memory, and emotion. Structurally, the brain is divided into different regions, each responsible for specific tasks. The cerebral cortex, for instance, is responsible for reasoning, problem-solving, and other higher-order functions.",
+    "passage_section2": "One of its notable structures is the hippocampus, essential for forming and storing memories.",
+    "missing_sentence_options": [
+      "The heart, on the other hand, is primarily responsible for pumping blood.",
+      "The brain also contains millions of neurons that communicate through electrical impulses.",
+      "Sunlight is crucial for the proper functioning of the brain.",
+      "Exercise can have a detrimental effect on the brain’s health."
+    ],
+    "correct_sentence": "The brain also contains millions of neurons that communicate through electrical impulses."
+  },
+  {
+    "id": "ir-q2-3",
+    "type": "highlightTheAnswer",
+    "passage": "The human brain is one of the most complex organs in the body, weighing about 1.4 kilograms on average. It controls automatic functions like heartbeat, digestion, and temperature regulation, along with cognitive functions such as thought, memory, and emotion. Structurally, the brain is divided into different regions, each responsible for specific tasks. The cerebral cortex, for instance, is responsible for reasoning, problem-solving, and other higher-order functions. The brain also contains millions of neurons that communicate through electrical impulses. One of its notable structures is the hippocampus, essential for forming and storing memories.",
+    "question": "What is the role of the hippocampus?",
+    "correct_answer_text": "essential for forming and storing memories"
+  },
+  {
+    "id": "ir-q2-4",
+    "type": "highlightTheAnswer",
+    "passage": "The human brain is one of the most complex organs in the body, weighing about 1.4 kilograms on average. It controls automatic functions like heartbeat, digestion, and temperature regulation, along with cognitive functions such as thought, memory, and emotion. Structurally, the brain is divided into different regions, each responsible for specific tasks. The cerebral cortex, for instance, is responsible for reasoning, problem-solving, and other higher-order functions. The brain also contains millions of neurons that communicate through electrical impulses. One of its notable structures is the hippocampus, essential for forming and storing memories.",
+    "question": "What is the role of the cerebral cortex?",
+    "correct_answer_text": "responsible for reasoning, problem-solving, and other higher-order functions"
+  },
+  {
+    "id": "ir-q2-5",
+    "type": "identifyTheIdea",
+    "passage": "The human brain is one of the most complex organs in the body, weighing about 1.4 kilograms on average. It controls automatic functions like heartbeat, digestion, and temperature regulation, along with cognitive functions such as thought, memory, and emotion. Structurally, the brain is divided into different regions, each responsible for specific tasks. The cerebral cortex, for instance, is responsible for reasoning, problem-solving, and other higher-order functions. The brain also contains millions of neurons that communicate through electrical impulses. One of its notable structures is the hippocampus, essential for forming and storing memories.",
+    "ideas": [
+      "The weight and measurement of the human brain.",
+      "The significance of the heart in the human body.",
+      "The different functions and structures of the human brain.",
+      "The process of neuron communication in the brain."
+    ],
+    "correct_idea": "The different functions and structures of the human brain."
+  },
+  {
+    "id": "ir-q2-6",
+    "type": "titleThePassage",
+    "passage": "The human brain is one of the most complex organs in the body, weighing about 1.4 kilograms on average. It controls automatic functions like heartbeat, digestion, and temperature regulation, along with cognitive functions such as thought, memory, and emotion. Structurally, the brain is divided into different regions, each responsible for specific tasks. The cerebral cortex, for instance, is responsible for reasoning, problem-solving, and other higher-order functions. The brain also contains millions of neurons that communicate through electrical impulses. One of its notable structures is the hippocampus, essential for forming and storing memories.",
+    "titles": [
+      "The Marvelous World of the Human Brain",
+      "Understanding Neurons: The Brain’s Messengers",
+      "A Deep Dive into the Cerebral Cortex",
+      "Memory and Emotion: The Role of the Hippocampus"
+    ],
+    "correct_title": "The Marvelous World of the Human Brain"
+  },
+  {
+    "id": "ir-q3-1",
+    "type": "completeTheSentences",
+    "passage": "At the (1)__________ science fair, young inventor Lara presented her (2)__________ robot. As spectators gathered, the robot began to (3)__________ a tune, surprising (4)__________ with its musical (5)__________.",
+    "blanks": [
+      {"id": "blank1", "options": ["annual", "final", "biggest", "smallest"], "correct": "annual"},
+      {"id": "blank2", "options": ["dancing", "speaking", "singing", "jumping"], "correct": "singing"},
+      {"id": "blank3", "options": ["recite", "play", "paint", "write"], "correct": "play"},
+      {"id": "blank4", "options": ["everyone", "it", "him", "meeting"], "correct": "everyone"},
+      {"id": "blank5", "options": ["appearance", "talent", "strength", "speed"], "correct": "talent"}
+    ]
+  },
+  {
+    "id": "ir-q3-2",
+    "type": "completeThePassage",
+    "passage_section1": "At the annual science fair, young inventor Lara presented her singing robot. As spectators gathered, the robot began to play a tune, surprising everyone with its musical talent.",
+    "passage_section2": "Enthusiastic children approached, eager to learn how the machine worked. Lara, with pride in her eyes, explained the intricate details of her invention, captivating her audience with her passion for robotics.",
+    "missing_sentence_options": [
+      "The fair was held in a vast arena.",
+      "The weather outside was stormy and unpredictable.",
+      "Among the spectators was a renowned scientist.",
+      "Her shoes squeaked as she walked to the podium."
+    ],
+    "correct_sentence": "Among the spectators was a renowned scientist."
+  },
+  {
+    "id": "ir-q3-3",
+    "type": "highlightTheAnswer",
+    "passage": "At the annual science fair, young inventor Lara presented her singing robot. As spectators gathered, the robot began to play a tune, surprising everyone with its musical talent. Among the spectators was a renowned scientist. Enthusiastic children approached, eager to learn how the machine worked. Lara, with pride in her eyes, explained the intricate details of her invention, captivating her audience with her passion for robotics.",
+    "question": "What surprised the spectators about the robot?",
+    "correct_answer_text": "its musical talent"
+  },
+  {
+    "id": "ir-q3-4",
+    "type": "highlightTheAnswer",
+    "passage": "At the annual science fair, young inventor Lara presented her singing robot. As spectators gathered, the robot began to play a tune, surprising everyone with its musical talent. Among the spectators was a renowned scientist. Enthusiastic children approached, eager to learn how the machine worked. Lara, with pride in her eyes, explained the intricate details of her invention, captivating her audience with her passion for robotics.",
+    "question": "What did the children want to know?",
+    "correct_answer_text": "how the machine worked"
+  },
+  {
+    "id": "ir-q3-5",
+    "type": "identifyTheIdea",
+    "passage": "At the annual science fair, young inventor Lara presented her singing robot. As spectators gathered, the robot began to play a tune, surprising everyone with its musical talent. Among the spectators was a renowned scientist. Enthusiastic children approached, eager to learn how the machine worked. Lara, with pride in her eyes, explained the intricate details of her invention, captivating her audience with her passion for robotics.",
+    "ideas": [
+      "The significance of the annual science fair.",
+      "Lara’s pride in her singing robot invention.",
+      "The robot’s ability to perform multiple tasks.",
+      "The renowned scientist’s influence on young inventors."
+    ],
+    "correct_idea": "Lara’s pride in her singing robot invention."
+  },
+  {
+    "id": "ir-q3-6",
+    "type": "titleThePassage",
+    "passage": "At the annual science fair, young inventor Lara presented her singing robot. As spectators gathered, the robot began to play a tune, surprising everyone with its musical talent. Among the spectators was a renowned scientist. Enthusiastic children approached, eager to learn how the machine worked. Lara, with pride in her eyes, explained the intricate details of her invention, captivating her audience with her passion for robotics.",
+    "titles": [
+      "A Day at the Science Fair",
+      "Lara’s Musical Marvel",
+      "Children and Their Curiosity",
+      "The Scientist’s Observation"
+    ],
+    "correct_title": "Lara’s Musical Marvel"
   }
 ]
