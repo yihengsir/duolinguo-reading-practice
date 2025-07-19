@@ -184,6 +184,11 @@
       color: #1e40af;
       border-left: 4px solid #3b82f6;
     }
+    
+    /* 段落间距 */
+    .passage-paragraph {
+      margin-bottom: 1.5rem;
+    }
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans">
@@ -208,7 +213,7 @@
       </div>
       
       <div class="mt-6 text-center">
-        <p class="text-sm text-gray-500">如果没有测验码，请联系锋锋老师获取</p>
+        <p class="text-sm text-gray-500">没有测验码？请联系锋锋老师获取。</p>
       </div>
     </div>
   </div>
@@ -1021,6 +1026,7 @@
       
       // 第一部分
       const section1 = document.createElement('p');
+      section1.className = 'passage-paragraph';
       section1.textContent = exercise.passage_section1;
       passageContainer.appendChild(section1);
       
@@ -1062,6 +1068,7 @@
       
       // 第二部分
       const section2 = document.createElement('p');
+      section2.className = 'passage-paragraph';
       section2.textContent = exercise.passage_section2;
       passageContainer.appendChild(section2);
       
@@ -1080,7 +1087,7 @@
       }
     }
     
-    // 渲染高亮答案题
+    // 渲染高亮答案题（修复版）
     function renderHighlightTheAnswer(exercise) {
       // 创建标题元素
       const titleElement = document.createElement('h2');
@@ -1088,7 +1095,7 @@
       titleElement.textContent = exercise.title || "高亮答案";
       exerciseContainer.appendChild(titleElement);
       
-      // 显示问题（如果有）
+      // 只显示JSON中的question字段（修复重复显示问题）
       if (exercise.question) {
         const questionElement = document.createElement('div');
         questionElement.className = 'question-prompt slide-up';
@@ -1096,40 +1103,22 @@
         exerciseContainer.appendChild(questionElement);
       }
       
-      // 创建问题文本
-      const questionElement = document.createElement('div');
-      questionElement.className = 'bg-primary/10 p-4 rounded-lg mb-4 slide-up';
-      questionElement.innerHTML = `<strong class="text-primary">问题:</strong> ${exercise.question}`;
-      exerciseContainer.appendChild(questionElement);
-      
-      // 创建段落容器
+      // 创建段落容器（修复移动端高亮问题）
       const passageContainer = document.createElement('div');
       passageContainer.className = 'interactive-passage slide-up';
-      passageContainer.innerHTML = exercise.passage;
       
-      // 添加高亮功能
-      passageContainer.addEventListener('mouseup', () => {
-        const selection = window.getSelection();
-        if (!selection.toString().trim()) return;
-        
-        // 清除之前的高亮
-        document.querySelectorAll('.highlight').forEach(el => {
-          el.outerHTML = el.innerHTML;
-        });
-        
-        // 创建新的高亮
-        const range = selection.getRangeAt(0);
-        const highlight = document.createElement('span');
-        highlight.className = 'highlight';
-        highlight.appendChild(range.extractContents());
-        range.insertNode(highlight);
-        
-        // 保存用户选择的文本
-        userAnswers[currentExerciseIndex] = [highlight.textContent];
-        
-        // 清除选择
-        selection.removeAllRanges();
+      // 处理段落文本，保留分段（修复分段显示问题）
+      const passageParagraphs = exercise.passage.split('\n').filter(p => p.trim() !== '');
+      passageParagraphs.forEach(paragraph => {
+        const pElement = document.createElement('p');
+        pElement.className = 'passage-paragraph mb-4';
+        pElement.textContent = paragraph;
+        passageContainer.appendChild(pElement);
       });
+      
+      // 添加高亮功能（支持移动端）
+      passageContainer.addEventListener('mouseup', handleHighlight);
+      passageContainer.addEventListener('touchend', handleHighlight);
       
       exerciseContainer.appendChild(passageContainer);
       
@@ -1145,14 +1134,58 @@
       // 恢复用户之前的高亮
       if (userAnswers[currentExerciseIndex] && userAnswers[currentExerciseIndex][0]) {
         const text = userAnswers[currentExerciseIndex][0];
-        if (passageContainer.textContent.includes(text)) {
-          const regex = new RegExp(text, 'g');
-          passageContainer.innerHTML = passageContainer.innerHTML.replace(
-            regex, 
-            `<span class="highlight">${text}</span>`
-          );
-        }
+        highlightTextInContainer(passageContainer, text);
       }
+    }
+    
+    // 高亮处理函数（支持移动端）
+    function handleHighlight(e) {
+      // 阻止默认行为（特别是对移动端重要）
+      e.preventDefault();
+      
+      const selection = window.getSelection();
+      if (!selection.toString().trim()) return;
+      
+      // 清除之前的高亮
+      document.querySelectorAll('.highlight').forEach(el => {
+        el.outerHTML = el.innerHTML;
+      });
+      
+      // 创建新的高亮
+      const range = selection.getRangeAt(0);
+      const highlight = document.createElement('span');
+      highlight.className = 'highlight';
+      highlight.appendChild(range.extractContents());
+      range.insertNode(highlight);
+      
+      // 保存用户选择的文本
+      userAnswers[currentExerciseIndex] = [highlight.textContent];
+      
+      // 清除选择
+      selection.removeAllRanges();
+      
+      // 对于移动端，确保点击后不会触发其他事件
+      if (e.type === 'touchend') {
+        document.activeElement.blur();
+      }
+    }
+
+    // 在容器中高亮指定文本
+    function highlightTextInContainer(container, text) {
+      if (!container || !text) return;
+      
+      // 转义正则特殊字符
+      const escapedText = text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(escapedText, 'g');
+      
+      // 遍历所有段落
+      const paragraphs = container.querySelectorAll('.passage-paragraph');
+      paragraphs.forEach(p => {
+        p.innerHTML = p.innerHTML.replace(
+          regex, 
+          `<span class="highlight">${text}</span>`
+        );
+      });
     }
     
     // 渲染观点识别题
@@ -1175,7 +1208,16 @@
       if (exercise.passage) {
         const passageContainer = document.createElement('div');
         passageContainer.className = 'interactive-passage mb-6 slide-up';
-        passageContainer.textContent = exercise.passage;
+        
+        // 处理段落文本，保留分段
+        const passageParagraphs = exercise.passage.split('\n').filter(p => p.trim() !== '');
+        passageParagraphs.forEach(paragraph => {
+          const pElement = document.createElement('p');
+          pElement.className = 'passage-paragraph mb-4';
+          pElement.textContent = paragraph;
+          passageContainer.appendChild(pElement);
+        });
+        
         exerciseContainer.appendChild(passageContainer);
       }
       
@@ -1228,7 +1270,16 @@
       if (exercise.passage) {
         const passageContainer = document.createElement('div');
         passageContainer.className = 'interactive-passage mb-6 slide-up';
-        passageContainer.textContent = exercise.passage;
+        
+        // 处理段落文本，保留分段
+        const passageParagraphs = exercise.passage.split('\n').filter(p => p.trim() !== '');
+        passageParagraphs.forEach(paragraph => {
+          const pElement = document.createElement('p');
+          pElement.className = 'passage-paragraph mb-4';
+          pElement.textContent = paragraph;
+          passageContainer.appendChild(pElement);
+        });
+        
         exerciseContainer.appendChild(passageContainer);
       }
       
