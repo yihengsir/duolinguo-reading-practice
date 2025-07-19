@@ -27,21 +27,21 @@
   {
     "id": "ir-q10-3",
     "type": "highlightTheAnswer",
-    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department.\nShe loved birds so much that she ended up buying a bird from the store.\nShe had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head.\nShe loved her bird and loved being able to work with birds at her job.",
     "question": "How did Bev feel about her bird?",
     "correct_answer_text": "She loved her bird"
   },
   {
     "id": "ir-q10-4",
     "type": "highlightTheAnswer",
-    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department.\nShe loved birds so much that she ended up buying a bird from the store.\nShe had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head.\nShe loved her bird and loved being able to work with birds at her job.",
     "question": "What did Bev start out working with at the pet store?",
     "correct_answer_text": "fish and reptiles"
   },
   {
     "id": "ir-q10-5",
     "type": "identifyTheIdea",
-    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department.\nShe loved birds so much that she ended up buying a bird from the store.\nShe had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head.\nShe loved her bird and loved being able to work with birds at her job.",
     "ideas": [
       "Bev has been working with animals her whole life.",
       "Bev was a child when she first visited a pet store.",
@@ -53,7 +53,7 @@
   {
     "id": "ir-q10-6",
     "type": "titleThePassage",
-    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department. She loved birds so much that she ended up buying a bird from the store. She had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head. She loved her bird and loved being able to work with birds at her job.",
+    "passage": "As soon as Bev realized how much she loved animals, she took a job at a pet store. She started out working with fish and reptiles before she moved to the bird department.\nShe loved birds so much that she ended up buying a bird from the store.\nShe had things professionally made for her bird because she wanted to make sure it would be safe and comfortable. It had a cage that was designed especially for it and, when she wasn’t at work, it was on her shoulder or on her head.\nShe loved her bird and loved being able to work with birds at her job.",
     "titles": [
       "Bev’s Pet Store",
       "Bev’s Pet Bird",
@@ -90,21 +90,21 @@
   {
     "id": "ir-q11-3",
     "type": "highlightTheAnswer",
-    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college.\nShe was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go.\nNow she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter.\nShe spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments.\nShe was glad she decided to go back to school.",
     "question": "Why had Mariza not been able to go to college before?",
     "correct_answer_text": "she had never had the chance to go"
   },
   {
     "id": "ir-q11-4",
     "type": "highlightTheAnswer",
-    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college.\nShe was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go.\nNow she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter.\nShe spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments.\nShe was glad she decided to go back to school.",
     "question": "What did Mariza do after she received her acceptance letter?",
     "correct_answer_text": "She spent several months deciding which classes she would take"
   },
   {
     "id": "ir-q11-5",
     "type": "identifyTheIdea",
-    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college.\nShe was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go.\nNow she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter.\nShe spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments.\nShe was glad she decided to go back to school.",
     "ideas": [
       "Mariza felt inferior to the other girls her age and she didn’t feel like she was worth anything.",
       "Mariza decided to study English at the university, but she didn’t know how to take the SAT test.",
@@ -116,7 +116,7 @@
   {
     "id": "ir-q11-6",
     "type": "titleThePassage",
-    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college. She was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go. Now she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter. She spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments. She was glad she decided to go back to school.",
+    "passage": "Mariza had been a good student at school and had planned to study further. She had always wanted to go to college.\nShe was 34 now, and had a successful career as a fashion designer, but she had never had the chance to go.\nNow she finally had the time in her life to go to college. She was thrilled when she received her acceptance letter.\nShe spent several months deciding which classes she would take. She thought the classes would be difficult because she had been out of school for several years, but she was pleasantly surprised when she received high marks on her assignments.\nShe was glad she decided to go back to school.",
     "titles": [
       "Mariza’s Hardest Class",
       "Mariza’s Admissions Counselor",
@@ -153,21 +153,21 @@
   {
     "id": "ir-q12-3",
     "type": "highlightTheAnswer",
-    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs.\nAlready, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data.\nThey may also be used to perform data collection or to survey forested areas for signs of fires.\nThere are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use.\nOther businesses are developing their own drones for their own customized purposes.",
     "question": "How often are unmanned aerial vehicles used today?",
     "correct_answer_text": "have not yet been widely used"
   },
   {
     "id": "ir-q12-4",
     "type": "highlightTheAnswer",
-    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs.\nAlready, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data.\nThey may also be used to perform data collection or to survey forested areas for signs of fires.\nThere are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use.\nOther businesses are developing their own drones for their own customized purposes.",
     "question": "What does a business that specializes in UAVs do?",
     "correct_answer_text": "sell the equipment and provide instruction for its safe use"
   },
   {
     "id": "ir-q12-5",
     "type": "identifyTheIdea",
-    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs.\nAlready, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data.\nThey may also be used to perform data collection or to survey forested areas for signs of fires.\nThere are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use.\nOther businesses are developing their own drones for their own customized purposes.",
     "ideas": [
       "Commercial drones are likely to become the next big tech investment, with many firms racing to be the primary provider.",
       "UAVs are unmanned vehicles that can be used for applications such as delivering packages or collecting data.",
@@ -179,7 +179,7 @@
   {
     "id": "ir-q12-6",
     "type": "titleThePassage",
-    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs. Already, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data. They may also be used to perform data collection or to survey forested areas for signs of fires. There are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use. Other businesses are developing their own drones for their own customized purposes.",
+    "passage": "Unmanned aerial vehicles (UAVs) have not yet been widely used in the business world, but may soon be. However, new technology will likely usher in the first wave of business UAVs.\nAlready, companies are using inexpensive battery operated UAVs to deliver packages. UAVs have also been used to deliver aid in emergency situations and to collect environmental data.\nThey may also be used to perform data collection or to survey forested areas for signs of fires.\nThere are already businesses that specialize in the sale and operation of UAVs. These businesses sell the equipment and provide instruction for its safe use.\nOther businesses are developing their own drones for their own customized purposes.",
     "titles": [
       "The Commercial History of the Airplane",
       "Experiments in Aerodynamics and Flight",
